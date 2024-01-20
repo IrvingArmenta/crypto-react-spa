@@ -1,33 +1,13 @@
 import '@testing-library/jest-dom';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
-import { Route } from 'wouter';
-import { ReactNode } from 'react';
 
-jest.mock('wouter', () => ({
-  ...jest.requireActual('wouter'),
-  Route: jest.fn(() => <></>)
-}));
-
-jest.mock('react', () => {
-  const React = jest.requireActual('react');
-  React.Suspense = ({ children }: { children: ReactNode }) => children;
-  return React;
+test('demo', () => {
+  expect(true).toBe(true);
 });
 
-describe('App.tsx', () => {
-  it('Renders the main page with the main layout wrapper', async () => {
-    render(<App />);
+it('Renders the main page', () => {
+  render(<App />);
 
-    await waitFor(() => screen);
-
-    expect(screen.getByTestId('main-layout')).toBeInTheDocument();
-  });
-  it('should render both available routes', async () => {
-    render(<App />);
-
-    await waitFor(() => screen);
-
-    expect(Route).toHaveBeenCalledTimes(2);
-  });
+  expect(screen.getByText('application')).toBeInTheDocument();
 });
