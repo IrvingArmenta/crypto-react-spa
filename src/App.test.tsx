@@ -4,12 +4,10 @@ import App from './App';
 import { Route } from 'wouter';
 import { ReactNode } from 'react';
 
-test('demo', () => {
-  expect(true).toBe(true);
-});
+describe('App Tests', () => {
+  it('Renders the main page', () => {
+    render(<App />);
 
-it('Renders the main page', () => {
-  render(<App />);
-
-  expect(screen.getByText('application')).toBeInTheDocument();
+    expect(screen.getByText('application')).toBeInTheDocument();
+  });
 });
