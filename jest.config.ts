@@ -3,7 +3,8 @@ export default {
   testEnvironment: 'jest-environment-jsdom',
   // globalSetup: '<rootDir>/test/globalSetup.ts',
   transform: {
-    '^.+\\.tsx?$': 'ts-jest'
+    '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.mjs$': 'babel-jest'
   },
   moduleNameMapper: {
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__mocks__/fileMock.js',
