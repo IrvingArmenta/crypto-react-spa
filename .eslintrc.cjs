@@ -9,11 +9,25 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', 'prettier'],
+  plugins: ['react-refresh', 'prettier', 'jest-dom', 'testing-library'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true }
     ]
-  }
+  },
+  overrides: [
+    {
+      // test files only
+      files: ['**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:react-hooks/recommended',
+        'plugin:testing-library/react',
+        'plugin:jest-dom/recommended',
+        'prettier'
+      ]
+    }
+  ]
 };
