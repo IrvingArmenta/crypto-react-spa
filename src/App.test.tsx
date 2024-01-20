@@ -1,13 +1,13 @@
 import '@testing-library/jest-dom';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 
-describe('App Tests', () => {
-  it('Renders the main page', async () => {
-    render(<App />);
+test('demo', () => {
+  expect(true).toBe(true);
+});
 
-    await waitFor(() => screen);
+it('Renders the main page', () => {
+  render(<App />);
 
-    expect(screen).toBeTruthy();
-  });
+  expect(screen.getByText('application')).toBeInTheDocument();
 });
