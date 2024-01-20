@@ -2,12 +2,10 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('demo', () => {
-  expect(true).toBe(true);
-});
+describe('App Tests', () => {
+  it('Renders the main page', () => {
+    render(<App />);
 
-it('Renders the main page', () => {
-  render(<App />);
-
-  expect(screen.getByText('application')).toBeInTheDocument();
+    expect(screen.getByText('application')).toBeInTheDocument();
+  });
 });
