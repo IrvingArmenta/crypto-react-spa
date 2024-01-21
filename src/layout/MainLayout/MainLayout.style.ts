@@ -5,11 +5,8 @@ export const mainWrapperStyle = css({
   display: 'flex',
   flexDir: 'column',
   bgColor: 'white',
-  margin: '0 auto',
+  minWidth: '350px',
   _dark: {
     bgColor: 'darkgray'
-  },
-  '& > main': {
-    flex: 1
   }
 });
