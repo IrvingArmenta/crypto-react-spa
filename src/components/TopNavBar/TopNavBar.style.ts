@@ -4,14 +4,13 @@ export const navStyle = css({
   display: 'flex',
   width: '100%',
   borderBottom: '1px solid',
-  borderBottomColor: 'gray.100',
-  justifyContent: { base: 'flex-start', md: 'center' }
+  borderBottomColor: 'gray.100'
 });
 
 export const linkStyle = css({
   color: 'gray.700',
   padding: '16px 18px',
-  fontSize: '1.1rem',
+  fontSize: '1.2rem',
   position: 'relative',
   _after: {
     content: '""',
@@ -32,7 +31,7 @@ export const linkStyle = css({
     pointerEvents: 'none'
   },
   '&[aria-current=page]': {
-    fontWeight: 700,
+    fontWeight: 600,
     color: 'gray.900',
     borderBottom: '2px solid',
     borderBottomColor: 'gray.500'
