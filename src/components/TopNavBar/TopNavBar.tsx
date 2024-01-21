@@ -8,17 +8,6 @@ export type TopNavBarPropsType = {
   links: [TopNavBarLinkType, TopNavBarLinkType, TopNavBarLinkType];
 };
 
-/**
- * Renders a top navigation bar with accessible links and active link highlighting.
- *
- * @remarks
- *   - Leverages wouter `useLocation` hook for active link detection.
- *   - Handles disabled links appropriately for screen readers and keyboard navigation.
- *   - Applies appropriate ARIA attributes for clear navigation context.
- *
- * @param {TopNavBarPropsType} props - Component props
- * @prop {Link[]} links - An array of link objects, each containing text and href properties.
- */
 const TopNavBar: FC<TopNavBarPropsType> = (props) => {
   const { links } = props;
   const location = useLocation();
