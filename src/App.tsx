@@ -1,14 +1,19 @@
-import { css } from '../styled-system/css';
-
-const styles = css({
-  backgroundColor: 'gainsboro',
-  borderRadius: '9999px',
-  fontSize: '13px',
-  padding: '10px 15px'
-});
+import { Switch, Route } from 'wouter';
+import { mainTopNavBarLinks, routes } from './routes';
+import { CoinDetails, Discover } from './views';
+import { MainLayout } from './layout';
+import { TopNavBar } from './components';
 
 function App() {
-  return <main className={styles}>application</main>;
+  return (
+    <MainLayout>
+      <TopNavBar links={mainTopNavBarLinks} />
+      <Switch>
+        <Route path={routes.Discover} component={Discover} />
+        <Route path={routes.CoinDetails} component={CoinDetails} />
+      </Switch>
+    </MainLayout>
+  );
 }
 
 export default App;
