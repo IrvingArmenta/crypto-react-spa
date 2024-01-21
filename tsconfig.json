@@ -24,7 +24,8 @@
     /* Paths */
     "baseUrl": "src",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["*"],
+      "@style/*": ["../styled-system/*"]
     }
   },
   "include": ["src", "__mocks__", "styled-system"],
