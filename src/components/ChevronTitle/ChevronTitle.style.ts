@@ -1,6 +1,6 @@
 import { css } from '@style/css';
 
-export const chevronTitleWrapStyle = css({
+export const chevronTitleWrapStyle = css.raw({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
