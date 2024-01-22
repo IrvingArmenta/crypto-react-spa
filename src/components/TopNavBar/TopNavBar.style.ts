@@ -10,7 +10,7 @@ export const navStyle = css({
 export const linkStyle = css({
   color: 'gray.700',
   padding: '16px 18px',
-  fontSize: '1.2rem',
+  fontSize: '1.1rem',
   position: 'relative',
   _after: {
     content: '""',
@@ -31,7 +31,7 @@ export const linkStyle = css({
     pointerEvents: 'none'
   },
   '&[aria-current=page]': {
-    fontWeight: 600,
+    fontWeight: 700,
     color: 'gray.900',
     borderBottom: '2px solid',
     borderBottomColor: 'gray.500'
