@@ -1,22 +1,25 @@
 import type { IconNamesType } from '@/icons';
-import { css, cx } from '@style/css';
-import { type FC } from 'react';
-import { svgIconStyle } from './SvgIcon.style';
-import { SystemStyleObject } from '@style/types';
+import { css } from '@style/css';
+import { useMemo, type FC } from 'react';
+import { svgIconRawStyle } from './SvgIcon.style';
 
 type SvgIconPropsType = {
   icon: IconNamesType;
-  cssProp?: SystemStyleObject;
+  color?: string;
+  size?: `${number}rem`;
 };
 
 const SvgIcon: FC<SvgIconPropsType> = (props) => {
-  const { icon, cssProp } = props;
+  const { icon, color = '#333', size = '1rem' } = props;
 
-  const classname = cx(svgIconStyle, css(cssProp));
+  const svgIconStyle = useMemo(
+    () => css(svgIconRawStyle, { width: size }),
+    [size]
+  );
 
   return (
-    <svg className={classname} aria-hidden="true">
-      <use href={`#icon-${icon}`} fill="currentColor" />
+    <svg className={svgIconStyle} aria-hidden="true">
+      <use href={`#icon-${icon}`} fill={color} />
     </svg>
   );
 };
