@@ -17,7 +17,59 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
-    extend: {}
+    tokens: {
+      colors: {
+        'gray.50': {
+          value: '#f9fafb'
+        },
+        'gray.100': {
+          value: '#f3f4f6'
+        },
+        'gray.200': {
+          value: '#e5e7eb'
+        },
+        'gray.300': {
+          value: '#d1d5db'
+        },
+        'gray.400': {
+          value: '#9ca3af'
+        },
+        'gray.500': {
+          value: '#6b7280'
+        },
+        'gray.600': {
+          value: '#4b5563'
+        },
+        'gray.700': {
+          value: '#374151'
+        },
+        'gray.800': {
+          value: '#1f2937'
+        },
+        'gray.900': {
+          value: '#111827'
+        },
+        'gray.950': {
+          value: '#030712'
+        }
+      }
+    },
+    semanticTokens: {
+      colors: {
+        negativeRed: { value: '#f6475d' },
+        positiveGreen: { value: '#0dcb81' },
+        iconDefault: { value: 'gray.950' }
+      }
+    },
+    extend: {
+      breakpoints: {
+        sm: '380px',
+        md: '640px',
+        lg: '860px',
+        xl: '1280px',
+        '2xl': '1536px'
+      }
+    }
   },
 
   importMap: '@style',
@@ -25,6 +77,8 @@ export default defineConfig({
   conditions: {
     dark: '[data-theme=dark] &'
   },
+
+  presets: ['@pandacss/preset-base'],
 
   // The output directory for your css system
   outdir: 'styled-system'
