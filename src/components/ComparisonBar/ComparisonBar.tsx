@@ -15,31 +15,19 @@ type ComparisonBarSideType = {
   label: string;
 };
 
-export type ComparisonBarPropsType = {
+type ComparisonBarPropsType = {
   negativeSide: ComparisonBarSideType;
   positiveSide: ComparisonBarSideType;
   cssProp?: SystemStyleObject;
 };
 
-/**
- * Renders a visual comparison bar with two sides, representing positive and negative values.
- *
- * @remarks
- *   - Calculates bar widths proportionally based on provided values.
- *   - Uses CSS custom properties for dynamic styling.
- *   - Provides appropriate ARIA attributes for accessibility.
- *
- * @param {ComparisonBarPropsType} props - Component props
- * @prop {ComparisonSideType} negativeSide - Data for the negative side of the comparison.
- * @prop {ComparisonSideType} positiveSide - Data for the positive side of the comparison.
- * @prop {SystemStyleObject} [cssProp] - Additional CSS classes to apply to the component.
- */
 const ComparisonBar: FC<ComparisonBarPropsType> = (props) => {
   const { negativeSide, positiveSide, cssProp } = props;
 
   const { positiveBarPercentage, negativeBarPercentage } = getPercentages(
     positiveSide.value,
-    negativeSide.value
+    negativeSide.value,
+    positiveSide.value + negativeSide.value
   );
 
   const styleVars = {
@@ -48,7 +36,7 @@ const ComparisonBar: FC<ComparisonBarPropsType> = (props) => {
   } as React.CSSProperties;
 
   return (
-    <div className={css(cssProp)} data-testid="comparison-bar-wrap">
+    <div className={css(cssProp)}>
       <div className={comparisonBarLabelsWrapStyle}>
         <label>{positiveSide.label}</label>
         <label>{negativeSide.label}</label>
