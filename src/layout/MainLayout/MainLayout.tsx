@@ -1,19 +1,9 @@
-import { css } from '@style/css';
 import { FC, ReactNode } from 'react';
+import { mainWrapperStyle } from './MainLayout.style';
 
 type MainLayoutPropsType = {
   children: ReactNode;
 };
-
-const mainWrapperStyle = css({
-  height: '100dvh',
-  display: 'flex',
-  flexDir: 'column',
-  bgColor: 'white',
-  _dark: {
-    bgColor: 'darkgray'
-  }
-});
 
 const MainLayout: FC<MainLayoutPropsType> = (props) => {
   const { children } = props;
