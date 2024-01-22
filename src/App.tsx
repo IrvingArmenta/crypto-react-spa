@@ -1,17 +1,19 @@
 import { Switch, Route } from 'wouter';
 import { mainTopNavBarLinks, routes } from './routes';
-import { CoinDetails, Discover } from './views';
 import { MainLayout } from './layout';
 import { TopNavBar } from './components';
+import { CoinDetails, Discover } from './views';
 
 function App() {
   return (
     <MainLayout>
       <TopNavBar links={mainTopNavBarLinks} />
-      <Switch>
-        <Route path={routes.Discover} component={Discover} />
-        <Route path={routes.CoinDetails} component={CoinDetails} />
-      </Switch>
+      <main>
+        <Switch>
+          <Route path={routes.Discover} component={Discover} />
+          <Route path={routes.CoinDetails} component={CoinDetails} />
+        </Switch>
+      </main>
     </MainLayout>
   );
 }
