@@ -1,13 +1,3 @@
-const iconNames = [
-  'chevron',
-  'chart',
-  'home',
-  'copy',
-  'megaphone',
-  'graph',
-  'money',
-  'bitcoin-logo',
-  'ethereum-logo'
-] as const;
+const iconNames = ['chevron'] as const;
 
 export type IconNamesType = (typeof iconNames)[number];
