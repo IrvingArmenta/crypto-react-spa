@@ -1,6 +1,7 @@
 export default {
   preset: 'ts-jest',
   testEnvironment: 'jest-environment-jsdom',
+  testPathIgnorePatterns: ['<rootDir>/node_modules/'],
   // globalSetup: '<rootDir>/test/globalSetup.ts',
   transform: {
     '^.+\\.tsx?$': 'ts-jest',

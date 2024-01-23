@@ -6,10 +6,10 @@ import { SystemStyleObject } from '@style/types';
  * */
 export const BARS_MAGIC_NUMBER = 8 as const;
 
-const comparisonBarsSharedStyles: SystemStyleObject = {
+const comparisonBarsSharedStyles: SystemStyleObject = css.raw({
   height: `${BARS_MAGIC_NUMBER + 2}px`,
   position: 'relative'
-};
+});
 
 export const comparisonBarWrapStyle = css({
   display: 'flex',
@@ -26,7 +26,7 @@ export const comparisonNegativeBarStyle = css({
   borderBottomRightRadius: `${BARS_MAGIC_NUMBER}px`,
   _before: {
     content: '""',
-    width: `${BARS_MAGIC_NUMBER + 2}px`,
+    width: '10px',
     aspectRatio: 1,
     bgColor: 'negativeRed',
     transform: 'skew(-16deg) translateY(-50%)',
@@ -44,7 +44,7 @@ export const comparisonPositiveBarStyle = css({
   borderBottomLeftRadius: `${BARS_MAGIC_NUMBER}px`,
   _before: {
     content: '""',
-    width: `${BARS_MAGIC_NUMBER + 2}px`,
+    width: '10px',
     aspectRatio: 1,
     bgColor: 'positiveGreen',
     transform: 'skew(-16deg) translateY(-50%)',

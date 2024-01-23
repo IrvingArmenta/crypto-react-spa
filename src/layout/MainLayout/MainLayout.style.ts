@@ -5,7 +5,6 @@ export const mainWrapperStyle = css({
   display: 'flex',
   flexDir: 'column',
   bgColor: 'white',
-  maxW: '1024px',
   margin: '0 auto',
   _dark: {
     bgColor: 'darkgray'
