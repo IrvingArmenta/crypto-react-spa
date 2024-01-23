@@ -2,13 +2,14 @@ import {
   ChevronTitle,
   CurrencyInfoGroup,
   ComparisonBar,
-  IconNavBar
+  IconsNavBar
 } from '@/components';
+
 import {
   discoverBlockStartVerticalSpacingStyle,
   discoverBodyWrapStyle
 } from './Discover.style';
-import { mockCurrencyInfoGroupBlocks } from './constants';
+import { iconNavLinks, mockCurrencyInfoGroupBlocks } from './constants';
 import { css } from '@style/css';
 import CoinHeatPrices from './components/CoinHeatPrices';
 
@@ -40,7 +41,7 @@ const Discover = () => {
         positiveSide={{ value: 3, label: 'Up 3' }}
         negativeSide={{ value: 17, label: 'Down 17' }}
       />
-      <IconNavBar />
+      <IconsNavBar links={iconNavLinks} />
     </div>
   );
 };
