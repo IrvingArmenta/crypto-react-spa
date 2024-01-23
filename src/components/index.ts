@@ -4,7 +4,7 @@ import ChevronTitle from './ChevronTitle/ChevronTitle';
 import CurrencyInfoGroup from './CurrencyInfoGroup/CurrencyInfoGroup';
 import ComparisonBar from './ComparisonBar/ComparisonBar';
 import LoadingSvg from './LoadingSvg/LoadingSvg';
-import IconNavBar from './IconNavBar/IconNavBar';
+import IconsNavBar from './IconsNavBar/IconsNavBar';
 
 export {
   TopNavBar,
@@ -13,5 +13,5 @@ export {
   CurrencyInfoGroup,
   ComparisonBar,
   LoadingSvg,
-  IconNavBar
+  IconsNavBar
 };
