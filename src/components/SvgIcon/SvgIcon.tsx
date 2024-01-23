@@ -1,12 +1,12 @@
 import type { IconNamesType } from '@/icons';
 import { css } from '@style/css';
-import { useMemo, type FC } from 'react';
+import { type FC } from 'react';
 import { svgIconRawStyle } from './SvgIcon.style';
+import { SystemStyleObject } from '@style/types';
 
 type SvgIconPropsType = {
   icon: IconNamesType;
-  color?: string;
-  size?: `${number}rem`;
+  cssProp?: SystemStyleObject;
 };
 
 /**
@@ -23,16 +23,11 @@ type SvgIconPropsType = {
  * @prop {object} [cssProp] - Additional CSS classes to apply to the icon.
  */
 const SvgIcon: FC<SvgIconPropsType> = (props) => {
-  const { icon, color = '#333', size = '1rem' } = props;
-
-  const svgIconStyle = useMemo(
-    () => css(svgIconRawStyle, { width: size }),
-    [size]
-  );
+  const { icon, cssProp } = props;
 
   return (
-    <svg className={svgIconStyle} aria-hidden="true">
-      <use href={`#icon-${icon}`} fill={color} />
+    <svg className={css(svgIconRawStyle, cssProp)} aria-hidden="true">
+      <use href={`#icon-${icon}`} fill="currentColor" />
     </svg>
   );
 };
