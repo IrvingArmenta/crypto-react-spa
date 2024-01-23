@@ -2,7 +2,7 @@ import { getEnv } from '@/utils/getEnv';
 
 export const apiKey = getEnv().isDevelopment
   ? undefined
-  : process.env.GECKO_COIN_API;
+  : process.env.VITE_GECKO_API;
 
 export const fetchHeaderWithKey: RequestInit | undefined = getEnv()
   .isDevelopment

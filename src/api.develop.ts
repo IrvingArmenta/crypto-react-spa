@@ -12,9 +12,7 @@ const GET_PRICE_URI =
 
 const app = express();
 app.use(cors());
-const apiKey = process.env.GECKO_COIN_API;
-
-console.log();
+const apiKey = process.env.VITE_GECKO_API;
 
 app.get('/api/simple-prices', async (_req: Request, res: Response) => {
   if (!apiKey) {

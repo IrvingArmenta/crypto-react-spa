@@ -38,6 +38,6 @@ export default defineConfig({
       inject: 'body-first',
       customDomId: '__svg__icons__dom__'
     }),
-    EnvironmentalPlugin(['GECKO_COIN_API'])
+    EnvironmentalPlugin(['VITE_GECKO_API'])
   ]
 });
