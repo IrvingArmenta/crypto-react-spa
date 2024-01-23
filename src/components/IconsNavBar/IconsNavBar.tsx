@@ -1,8 +1,7 @@
 import { IconNamesType } from '@/icons';
 import {
   iconsNavBarWrapStyle,
-  iconsNavBarListStyle,
-  linkIconStyle
+  iconsNavBarListStyle
 } from './IconsNavBar.style';
 import { FC } from 'react';
 import { SvgIcon } from '..';
@@ -18,16 +17,6 @@ type IconsNavBarPropsType = {
   links: IconsNavBarLinkType[];
 };
 
-/**
- * Renders a navigation bar with clickable icons and text links.
- *
- * @remarks
- *   - Visually distinguishes disabled links with lighter font weight and opacity.
- *   - Throws an error if no links are provided.
- *
- * @param {IconsNavBarPropsType} props - Component props
- * @prop {Link[]} links - An array of link objects, each containing text, href, and icon properties.
- */
 const IconsNavBar: FC<IconsNavBarPropsType> = (props) => {
   const { links } = props;
 
@@ -49,7 +38,7 @@ const IconsNavBar: FC<IconsNavBarPropsType> = (props) => {
               >
                 <SvgIcon
                   cssProp={css.raw({
-                    ...linkIconStyle,
+                    width: { md: '2.5rem', base: '1.3rem', sm: '2rem' },
                     opacity: href === '#' ? 0.5 : 1
                   })}
                   icon={icon}
