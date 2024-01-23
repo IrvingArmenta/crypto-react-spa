@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import { dependencies } from './package.json';
+import EnvironmentalPlugin from 'vite-plugin-environment';
 import path from 'path';
 
 function renderChunks(deps: Record<string, string>) {
@@ -36,6 +37,7 @@ export default defineConfig({
       symbolId: 'icon-[dir]-[name]',
       inject: 'body-first',
       customDomId: '__svg__icons__dom__'
-    })
+    }),
+    EnvironmentalPlugin(['GECKO_COIN_API'])
   ]
 });
