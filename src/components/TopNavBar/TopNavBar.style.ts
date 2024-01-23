@@ -4,7 +4,8 @@ export const navStyle = css({
   display: 'flex',
   width: '100%',
   borderBottom: '1px solid',
-  borderBottomColor: 'gray.100'
+  borderBottomColor: 'gray.100',
+  justifyContent: { base: 'flex-start', md: 'center' }
 });
 
 export const linkStyle = css({
