@@ -1,70 +1,27 @@
-import {
-  GetOhlcUriFrontendReturnType,
-  GetOhlcUriReturnType,
-  GetPriceUriFrontendReturnType,
-  GetPriceUriReturnType
-} from './types';
-import { config } from './config';
-import { CoinIdType } from '@/global-types';
-
+import { currencyFormat } from '@/utils/currencyFormat';
+import { GetPriceUriFrontendReturnType, GetPriceUriReturnType } from './types';
+import { fetchHeaderWithKey, GET_SIMPLE_PRICE_URI } from './config';
 
 export const fetchSimplePrices = async () => {
-  const response = await fetch(
-    config.GET_SIMPLE_PRICE_URI,
-    config.FETCH_HEADER
-  );
+  const response = await fetch(GET_SIMPLE_PRICE_URI, fetchHeaderWithKey);
   const json = (await response.json()) as GetPriceUriReturnType | undefined;
 
   if (!json) {
     throw new Error(
-      `Something went wrong with ${config.GET_SIMPLE_PRICE_URI} request`
+      `Something went wrong with ${GET_SIMPLE_PRICE_URI} request`
     );
   }
 
-  const { bitcoin, ethereum } = json;
   const frontEndReturn: GetPriceUriFrontendReturnType = {
     btc: {
-      price: `${bitcoin.eth}`,
-      percentageDiff24h: `${bitcoin.eth_24h_change.toFixed(4)}%`
+      price: currencyFormat(json.bitcoin.usd),
+      percentageDiff24h: `${json.bitcoin.usd_24h_change.toFixed(2)}%`
     },
     eth: {
-      price: `${ethereum.btc}`,
-      percentageDiff24h: `${ethereum.btc_24h_change.toFixed(4)}%`
+      price: currencyFormat(json.ethereum.usd),
+      percentageDiff24h: `${json.ethereum.usd_24h_change.toFixed(2)}%`
     }
   };
 
   return frontEndReturn;
-};
-
-export const fetchOHLC = async (coinId: CoinIdType) => {
-  const response = await fetch(
-    coinId === 'btc' ? config.GET_OHLC_URI_BTCETH : config.GET_OHLC_URI_ETHBTC,
-    config.FETCH_HEADER
-  );
-
-  const json = (await response.json()) as string | undefined;
-
-  if (!json) {
-    throw new Error(
-      `Something went wrong with ${config.GET_SIMPLE_PRICE_URI} request`
-    );
-  }
-
-  const dataArray = json as unknown as GetOhlcUriReturnType;
-
-  const latestClosePrice = dataArray[dataArray.length - 1][4];
-  const latestOpenPrice = dataArray[dataArray.length - 1][1];
-  const isNegative = latestOpenPrice > latestClosePrice;
-
-  const frontendData: GetOhlcUriFrontendReturnType = {
-    series: [
-      {
-        data: dataArray
-      }
-    ],
-    latestPrice: `${latestClosePrice}`,
-    isNegative
-  };
-
-  return frontendData;
 };

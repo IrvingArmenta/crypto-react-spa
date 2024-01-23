@@ -1,29 +1,28 @@
-/* eslint-disable no-console */
 import express from 'express';
 import { Request, Response } from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
-import { config } from './api/config';
-import { CoinIdType } from './global-types';
-import morgan from 'morgan';
 
 dotenv.config();
 
-const PORT = process.env.API_LOCAL_PORT;
-const apiKey = process.env.GECKO_COIN_API;
 const GECKO_CUSTOM_HEADER = 'x-cg-demo-api-key' as const;
+const GECKO_API_BASE_URI = 'https://api.coingecko.com/api/v3' as const;
+const GET_PRICE_URI =
+  `${GECKO_API_BASE_URI}/simple/price?ids=bitcoin%2Cethereum&vs_currencies=usd&include_market_cap=false&include_24hr_change=true&precision=2` as const;
 
 const app = express();
-app.use(morgan('tiny'));
 app.use(cors());
+const apiKey = process.env.GECKO_COIN_API;
 
-if (!apiKey) {
-  throw new Error('express: no api key found in the .env file');
-}
+console.log();
 
 app.get('/api/simple-prices', async (_req: Request, res: Response) => {
+  if (!apiKey) {
+    throw new Error('NO API KEY FOUND');
+  }
+
   try {
-    const response = await fetch(config.GET_SIMPLE_PRICE_URI, {
+    const response = await fetch(GET_PRICE_URI, {
       headers: {
         [GECKO_CUSTOM_HEADER]: apiKey
       }
@@ -38,40 +37,8 @@ app.get('/api/simple-prices', async (_req: Request, res: Response) => {
   }
 });
 
-app.get('/api/ohlc/:coinId', async (req: Request, res: Response) => {
-  const coinId = req.params.coinId as CoinIdType;
-
-  if (!coinId) {
-    throw new Error(
-      'express: coinId Parameter is necessary for this operation'
-    );
-  }
-
-  try {
-    const response = await fetch(
-      coinId === 'btc'
-        ? config.GET_OHLC_URI_BTCETH
-        : config.GET_OHLC_URI_ETHBTC,
-      {
-        headers: {
-          [GECKO_CUSTOM_HEADER]: apiKey
-        }
-      }
-    );
-
-    const json = await response.json();
-
-    res.send(json);
-  } catch (e) {
-    const error = e as Error;
-    console.error(error.message);
-  }
-});
-
-if (!PORT) {
-  throw new Error('API_LOCAL_PORT .env value is missing');
-}
-
-app.listen(PORT, () =>
-  console.log(`crypto-react-spa local server listening on port: ${PORT}`)
+app.listen(process.env.API_LOCAL_PORT, () =>
+  console.log(
+    `crypto-react-spa local server listening on: ${process.env.API_LOCAL_PORT || 3001}`
+  )
 );
