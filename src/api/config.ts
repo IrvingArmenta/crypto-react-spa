@@ -19,4 +19,4 @@ export const API_BASE_URI = getEnv().isDevelopment
 
 export const GET_SIMPLE_PRICE_URI = getEnv().isDevelopment
   ? `${API_BASE_URI}/api/simple-prices`
-  : '/simple/price?ids=bitcoin%2Cethereum&vs_currencies=usd&include_market_cap=false&include_24hr_change=true&precision=2';
+  : `${API_BASE_URI}/simple/price?ids=bitcoin%2Cethereum&vs_currencies=usd&include_market_cap=false&include_24hr_change=true&precision=2`;
