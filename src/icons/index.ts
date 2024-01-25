@@ -5,7 +5,9 @@ const iconNames = [
   'copy',
   'megaphone',
   'graph',
-  'money'
+  'money',
+  'bitcoin-logo',
+  'ethereum-logo'
 ] as const;
 
 export type IconNamesType = (typeof iconNames)[number];
