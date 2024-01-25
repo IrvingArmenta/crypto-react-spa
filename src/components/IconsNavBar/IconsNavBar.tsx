@@ -1,8 +1,7 @@
 import { IconNamesType } from '@/icons';
 import {
   iconsNavBarWrapStyle,
-  iconsNavBarListStyle,
-  linkIconStyle
+  iconsNavBarListStyle
 } from './IconsNavBar.style';
 import { FC } from 'react';
 import { SvgIcon } from '..';
@@ -49,7 +48,7 @@ const IconsNavBar: FC<IconsNavBarPropsType> = (props) => {
               >
                 <SvgIcon
                   cssProp={css.raw({
-                    ...linkIconStyle,
+                    width: { md: '2.5rem', base: '1.3rem', sm: '2rem' },
                     opacity: href === '#' ? 0.5 : 1
                   })}
                   icon={icon}

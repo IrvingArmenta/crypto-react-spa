@@ -1,4 +1,6 @@
 import {
+  GetCompaniesUriFrontendReturnType,
+  GetCompaniesUriReturnType,
   GetOhlcUriFrontendReturnType,
   GetOhlcUriReturnType,
   GetPriceUriFrontendReturnType,
@@ -6,6 +8,7 @@ import {
 } from './types';
 import { config } from './config';
 import type { CoinIdType } from '@/global-types';
+import { currencyFormat } from '@/utils/currencyFormat';
 
 /**
  * Fetches simple price data for Bitcoin and Ethereum.
@@ -79,6 +82,47 @@ export const fetchOHLC = async (coinId: CoinIdType) => {
     ],
     latestPrice: `${latestClosePrice}`,
     isNegative
+  };
+
+  return frontendData;
+};
+
+/**
+ * Fetches company holdings data for a given coin ID from an external API.
+ *
+ * @param coinId - The ID of the coin for which to retrieve holdings data.
+ * @returns A promise that resolves with an object containing the following properties:
+ *   - totalHoldings: The total holdings of the coin for all companies.
+ *   - totalValueUSD: The total value of the holdings in USD, formatted as a string.
+ *   - companies: An array of up to 7 companies, each with the following properties:
+ *      - name: The name of the company.
+ *      - totalHoldings: The total holdings of the coin for the company.
+ *      - totalCurrentValueUsd: The total current value of the holdings in USD, formatted as a string.
+ *      - country: The country in which the company is located.
+ */
+export const fetchCompaniesHoldings = async (coinId: CoinIdType) => {
+  const URI =
+    coinId === 'btc' ? config.GET_COMPANY_URI_BTC : config.GET_COMPANY_URI_ETH;
+
+  const response = await fetch(URI, config.FETCH_HEADER);
+
+  const json = (await response.json()) as string | undefined;
+
+  if (!json) {
+    throw new Error(`Something went wrong with ${URI} request`);
+  }
+
+  const data = json as unknown as GetCompaniesUriReturnType;
+
+  const frontendData: GetCompaniesUriFrontendReturnType = {
+    totalHoldings: data.total_holdings,
+    totalValueUSD: currencyFormat(data.total_value_usd),
+    companies: data.companies.slice(0, 7).map((company) => ({
+      name: company.name,
+      totalHoldings: company.total_holdings,
+      totalCurrentValueUsd: currencyFormat(company.total_current_value_usd),
+      country: company.country
+    }))
   };
 
   return frontendData;

@@ -12,10 +12,13 @@ import { SvgIcon } from '@/components';
 import {
   apexChartWrapperStyle,
   coinDetailsBackButtonStyle,
+  coinDetailsBottomButtons,
+  coinDetailsBottomRow,
   coinDetailsHeaderWrapStyle,
   coinDetailsTitleWrapStyle
 } from './CoinDetails.style';
 import { css } from '@style/css';
+import CompaniesTable from './CompaniesTable';
 
 export type CoinDetailsPropsType = {
   coinId: CoinIdType;
@@ -46,7 +49,15 @@ const CoinDetails: FC<CoinDetailsPropsType> = (props) => {
   }
 
   return (
-    <>
+    <div
+      className={css({
+        height: '100%',
+        padding: { sm: '8px', md: '16px' },
+        display: 'flex',
+        flexDir: 'column',
+        overflow: 'hidden'
+      })}
+    >
       <header
         className={coinDetailsHeaderWrapStyle}
         data-testid="coin-details-header"
@@ -85,7 +96,18 @@ const CoinDetails: FC<CoinDetailsPropsType> = (props) => {
           id="crypto-chart"
         />
       </div>
-    </>
+      <CompaniesTable coinId={coinId} />
+      <footer className={coinDetailsBottomRow}>
+        <button type="button">
+          <SvgIcon icon="robot-img" cssProp={css.raw({ width: '5rem' })} />
+          <span>Trading Bot</span>
+        </button>
+        <div className={coinDetailsBottomButtons}>
+          <button type="button">Buy</button>
+          <button type="button">Sell</button>
+        </div>
+      </footer>
+    </div>
   );
 };
 

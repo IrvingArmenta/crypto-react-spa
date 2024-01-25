@@ -2,14 +2,13 @@ import { css } from '@style/css';
 
 export const coinDetailsHeaderWrapStyle = css({
   marginBlockEnd: '8px',
-  marginBlockStart: '16px',
   paddingInlineStart: { base: '8px', sm: '16px', md: '32px' },
   display: 'flex',
   alignItems: 'center'
 });
 
 export const coinDetailsTitleWrapStyle = css({
-  fontSize: '1.8rem',
+  fontSize: { sm: '4vw', md: '1.8rem' },
   marginInlineStart: '48px',
   pos: 'relative',
   _before: {
@@ -44,7 +43,8 @@ export const coinDetailsTitleWrapStyle = css({
 });
 
 export const apexChartWrapperStyle = css({
-  height: '45%'
+  height: '45%',
+  animation: 'fadeIn'
 });
 
 export const coinDetailsBackButtonStyle = css({
@@ -59,5 +59,47 @@ export const coinDetailsBackButtonStyle = css({
   transition: 'all 200ms ease-in-out',
   _hover: {
     bgColor: 'gray.100'
+  }
+});
+
+export const coinDetailsBottomRow = css({
+  display: 'flex',
+  justifyContent: 'center',
+  marginBlockStart: 'auto',
+  marginInline: 'auto',
+  maxW: '1024px',
+  width: '100%',
+  '& > button': {
+    fontWeight: '700',
+    display: 'flex',
+    flexDir: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginInlineEnd: { md: '24px', sm: '14px' },
+    whiteSpace: 'nowrap'
+  }
+});
+
+export const coinDetailsBottomButtons = css({
+  display: 'flex',
+  width: '80%',
+  '& > button': {
+    flex: 1,
+    justifyContent: 'center',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    color: 'white',
+    padding: { sm: '0.8rem', md: '1rem' },
+    fontSize: '2rem',
+    bgColor: 'negativeRed',
+    borderRadius: '16px',
+    _firstOfType: {
+      bgColor: 'positiveGreen',
+      marginInlineEnd: { md: '1.5rem', sm: '1rem' }
+    },
+    _hover: {
+      filter: 'brightness(1.1)'
+    }
   }
 });

@@ -9,6 +9,8 @@ import { CoinIdType } from '@/global-types';
 
 jest.mock('react-apexcharts', () => jest.fn(() => <></>));
 
+jest.mock('./CompaniesTable', () => jest.fn(() => <></>));
+
 const mockChartData: GetOhlcUriFrontendReturnType = {
   series: [
     {

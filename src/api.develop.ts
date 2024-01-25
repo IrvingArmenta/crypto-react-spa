@@ -76,6 +76,40 @@ app.get('/api/ohlc/:coinId', async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * proxy route `api/ohlc/:coinId` that points to the CoinGecko api `/coins/{id}/ohlc` where `coinId` is the symbol of the coin
+ * reference: https://www.coingecko.com/api/documentation
+ */
+app.get('/api/companies/:coinId', async (req: Request, res: Response) => {
+  const coinId = req.params.coinId as CoinIdType;
+
+  if (!coinId) {
+    throw new Error(
+      'express: coinId Parameter is necessary for this operation'
+    );
+  }
+
+  try {
+    const response = await fetch(
+      coinId === 'btc'
+        ? config.GET_COMPANY_URI_BTC
+        : config.GET_COMPANY_URI_ETH,
+      {
+        headers: {
+          [GECKO_CUSTOM_HEADER]: API_KEY
+        }
+      }
+    );
+
+    const json = await response.json();
+
+    res.send(json);
+  } catch (e) {
+    const error = e as Error;
+    console.error(error.message);
+  }
+});
+
 if (!PORT) {
   throw new Error('API_LOCAL_PORT .env value is missing');
 }

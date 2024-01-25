@@ -17,6 +17,13 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
+    breakpoints: {
+      sm: '360px',
+      md: '640px',
+      lg: '860px',
+      xl: '1280px',
+      '2xl': '1536px'
+    },
     tokens: {
       colors: {
         'gray.50': {
@@ -62,13 +69,6 @@ export default defineConfig({
       }
     },
     extend: {
-      breakpoints: {
-        sm: '360px',
-        md: '640px',
-        lg: '860px',
-        xl: '1280px',
-        '2xl': '1536px'
-      },
       tokens: {
         animations: {
           fadeIn: {
