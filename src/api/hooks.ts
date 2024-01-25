@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import { GET_SIMPLE_PRICE_URI } from './config';
-import { fetchOHLC, fetchSimplePrices } from './index';
+import { fetchCompaniesHoldings, fetchOHLC, fetchSimplePrices } from './index';
 import type { CoinIdType } from '@/global-types';
 
 /**
@@ -36,6 +36,26 @@ export function useGetOHLCData(coinId: CoinIdType) {
   const { data, isLoading, isValidating } = useSWR(
     [fetchKey, coinId],
     ([, coinId]) => fetchOHLC(coinId)
+  );
+
+  return { data, isLoading, isValidating };
+}
+
+/**
+ * Fetches and manages data for companies associated with a given coin ID.
+ *
+ * @param coinId - The ID of the coin for which to retrieve company data.
+ * @returns An object containing the following properties:
+ *   - data: The fetched company data, if available.
+ *   - isLoading: A boolean indicating whether data is currently being fetched.
+ *   - isValidating: A boolean indicating whether the fetched data is being validated.
+ * */
+export function useGetCompaniesData(coinId: CoinIdType) {
+  const fetchKey = `get/companies/${coinId}`;
+
+  const { data, isLoading, isValidating } = useSWR(
+    [fetchKey, coinId],
+    ([, coinId]) => fetchCompaniesHoldings(coinId)
   );
 
   return { data, isLoading, isValidating };

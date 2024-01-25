@@ -7,7 +7,8 @@ const iconNames = [
   'graph',
   'money',
   'bitcoin-logo',
-  'ethereum-logo'
+  'ethereum-logo',
+  'robot-img'
 ] as const;
 
 export type IconNamesType = (typeof iconNames)[number];
