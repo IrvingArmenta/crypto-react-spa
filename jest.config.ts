@@ -12,5 +12,13 @@ export default {
     '\\.(css|scss)$': 'identity-obj-proxy',
     '@/(.*)$': '<rootDir>/src/$1',
     '@style/(.*)$': '<rootDir>/styled-system/$1'
-  }
+  },
+  coveragePathIgnorePatterns: [
+    'node_modules',
+    '<rootDir>/src/main.tsx',
+    'styled-system',
+    'api.develop.ts',
+    '<rootDir>/src/views/index.tsx'
+  ],
+  prettierPath: require.resolve('prettier-2')
 };

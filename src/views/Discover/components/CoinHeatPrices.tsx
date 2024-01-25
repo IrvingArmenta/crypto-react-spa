@@ -10,6 +10,15 @@ import { useGetSimplePriceData } from '@/api/hooks';
 import { Link } from 'wouter';
 import type { FC } from 'react';
 
+/**
+ * Renders a concise overview of the current prices and 24h percentage changes for BTC and ETH.
+ *
+ * @remarks
+ *   - Fetches price data using the `useGetSimplePriceData` hook.
+ *   - Handles loading and error states gracefully with user-friendly messages and a loading indicator.
+ *   - Displays prices, percentage changes, and links to coin details pages for BTC and ETH.
+ *   - Applies appropriate styling to highlight positive or negative price movements.
+ */
 const CoinHeatPrices: FC = () => {
   const { data, isLoading, error } = useGetSimplePriceData();
 
@@ -31,7 +40,7 @@ const CoinHeatPrices: FC = () => {
   }
 
   return (
-    <div className={coinHeatPricesWrapperStyle}>
+    <div className={coinHeatPricesWrapperStyle} data-testid="coin-heat-wrap">
       <article
         className={coinPriceBoxBTCStyle}
         data-is-negative={data?.btc.percentageDiff24h.includes('-')}
