@@ -63,20 +63,41 @@ export default defineConfig({
     },
     extend: {
       breakpoints: {
-        sm: '380px',
+        sm: '360px',
         md: '640px',
         lg: '860px',
         xl: '1280px',
         '2xl': '1536px'
+      },
+      tokens: {
+        animations: {
+          fadeIn: {
+            value: 'fadeIn 0.5s ease-in-out forwards'
+          }
+        }
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': {
+            opacity: 0,
+            transform: 'scale(0.9)'
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'scale(1)'
+          }
+        }
       }
     }
   },
 
-  importMap: '@style',
-
   conditions: {
     dark: '[data-theme=dark] &'
   },
+
+  importMap: '@style',
+  watch: true,
+  hash: true,
 
   presets: ['@pandacss/preset-base'],
 
