@@ -1,6 +1,6 @@
 import { css } from '@style/css';
 
-export const currencyInfoGroupWrapStyle = css.raw({
+export const currencyInfoGroupWrapStyle = css({
   display: 'flex',
   '& > article': {
     flexBasis: 'calc(100% / 3)',

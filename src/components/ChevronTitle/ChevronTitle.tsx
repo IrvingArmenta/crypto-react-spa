@@ -4,7 +4,7 @@ import {
   chevronTitleIconWrapStyle,
   chevronTitleWrapStyle
 } from './ChevronTitle.style';
-import { css } from '@style/css';
+import { css, cx } from '@style/css';
 import type { SystemStyleObject } from '@style/types';
 
 export type ChevronTitlePropsType = {
@@ -24,8 +24,10 @@ export type ChevronTitlePropsType = {
 const ChevronTitle: FC<ChevronTitlePropsType> = (props) => {
   const { text, altText, cssProp } = props;
 
+  const chevronTitleClassname = cx(chevronTitleWrapStyle, css(cssProp));
+
   return (
-    <div className={css(chevronTitleWrapStyle, cssProp)}>
+    <div className={chevronTitleClassname}>
       <span>{text}</span>
       <span className={chevronTitleIconWrapStyle}>
         {altText}

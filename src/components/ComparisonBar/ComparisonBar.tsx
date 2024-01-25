@@ -39,8 +39,7 @@ const ComparisonBar: FC<ComparisonBarPropsType> = (props) => {
 
   const { positiveBarPercentage, negativeBarPercentage } = getPercentages(
     positiveSide.value,
-    negativeSide.value,
-    positiveSide.value + negativeSide.value
+    negativeSide.value
   );
 
   const styleVars = {

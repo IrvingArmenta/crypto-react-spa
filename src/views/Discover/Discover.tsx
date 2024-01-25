@@ -4,16 +4,16 @@ import {
   ComparisonBar,
   IconsNavBar
 } from '@/components';
-
 import {
   discoverBlockStartVerticalSpacingStyle,
   discoverBodyWrapStyle
 } from './Discover.style';
 import { iconNavLinks, mockCurrencyInfoGroupBlocks } from './constants';
-import { css } from '@style/css';
 import CoinHeatPrices from './components/CoinHeatPrices';
+import type { FC } from 'react';
+import { css } from '@style/css';
 
-const Discover = () => {
+const Discover: FC = () => {
   return (
     <div className={discoverBodyWrapStyle}>
       <ChevronTitle text="Market Sentiments" />
