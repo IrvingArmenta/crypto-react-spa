@@ -27,7 +27,7 @@ export const candlesticksChartOptions: ApexOptions = {
       style: {
         ...sharedStyle
       },
-      formatter: (n) => n.toFixed(2)
+      formatter: (n) => n.toFixed(4)
     }
   },
   grid: {
