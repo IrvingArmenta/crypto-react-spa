@@ -2,7 +2,7 @@ import { css } from '@style/css';
 
 export const coinHeatPricesLoadingStyle = css({
   display: 'flex',
-  marginBlockStart: '16px',
+  paddingBlockStart: '16px',
   flex: 1,
   justifyContent: 'center',
   alignItems: 'center',
@@ -12,17 +12,20 @@ export const coinHeatPricesLoadingStyle = css({
 });
 
 export const coinHeatPricesWrapperStyle = css({
-  marginBlockStart: '16px',
+  paddingBlockStart: '16px',
   flex: 1,
+  display: 'flex',
+  justifyContent: 'center',
+  flexDir: 'column',
+  animation: 'fadeIn',
   md: {
-    display: 'flex',
-    justifyContent: 'center',
+    flexDir: 'row',
     alignItems: 'center'
   }
 });
 
 const coinPriceBoxSharedStyles = css.raw({
-  bgColor: 'negativeRed',
+  bgColor: 'positiveGreen',
   color: 'white',
   fontWeight: '700',
   display: 'flex',
@@ -30,7 +33,16 @@ const coinPriceBoxSharedStyles = css.raw({
   alignItems: 'center',
   flexDir: 'column',
   gap: '0.8rem',
-  paddingBlock: '1.2rem'
+  paddingBlock: '1.2rem',
+  pos: 'relative',
+  '& a': {
+    pos: 'absolute',
+    inset: 0,
+    display: 'inline-block'
+  },
+  '&[data-is-negative=true]': {
+    bgColor: 'negativeRed'
+  }
 });
 
 export const coinPriceBoxBTCStyle = css({
@@ -39,7 +51,10 @@ export const coinPriceBoxBTCStyle = css({
   height: '65%',
   fontSize: '5.5rem',
   '& .price': {
-    fontSize: '2.5rem'
+    fontSize: '2.5rem',
+    '& span': {
+      fontSize: '1.3rem'
+    }
   },
   '& .diff': {
     fontSize: '1.5rem'
@@ -57,7 +72,10 @@ export const coinPriceBoxETHStyle = css({
   height: '35%',
   marginBlockStart: { md: 0, base: '16px' },
   '& .price': {
-    fontSize: '2rem'
+    fontSize: '2rem',
+    '& span': {
+      fontSize: '0.9rem'
+    }
   },
   '& .diff': {
     fontSize: '1rem'
