@@ -7,6 +7,7 @@ import {
 import { config } from './config';
 import { CoinIdType } from '@/global-types';
 
+
 export const fetchSimplePrices = async () => {
   const response = await fetch(
     config.GET_SIMPLE_PRICE_URI,
