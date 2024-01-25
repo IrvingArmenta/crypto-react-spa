@@ -26,11 +26,21 @@ export const GET_OHLC_URI_ETHBTC = getEnv().isDevelopment
   ? (`${API_BASE_URI}/api/ohlc/eth` as const)
   : (`${API_BASE_URI}/coins/ethereum/ohlc?vs_currency=btc&days=7&precision=4` as const);
 
+export const GET_COMPANY_URI_BTC = getEnv().isDevelopment
+  ? (`${API_BASE_URI}/api/companies/btc` as const)
+  : (`${API_BASE_URI}/companies/public_treasury/bitcoin` as const);
+
+export const GET_COMPANY_URI_ETH = getEnv().isDevelopment
+  ? (`${API_BASE_URI}/api/companies/eth` as const)
+  : (`${API_BASE_URI}/companies/public_treasury/ethereum` as const);
+
 const config = {
   FETCH_HEADER,
   GET_SIMPLE_PRICE_URI,
   GET_OHLC_URI_BTCETH,
-  GET_OHLC_URI_ETHBTC
+  GET_OHLC_URI_ETHBTC,
+  GET_COMPANY_URI_BTC,
+  GET_COMPANY_URI_ETH
 };
 
 export { config };

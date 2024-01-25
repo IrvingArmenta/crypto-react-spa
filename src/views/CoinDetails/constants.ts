@@ -56,6 +56,45 @@ export const candlesticksChartOptions: ApexOptions = {
   }
 };
 
+export const treemapChartOptions: ApexOptions = {
+  chart: {
+    type: 'pie'
+  },
+  dataLabels: {
+    style: {
+      ...sharedStyle
+    }
+  },
+  xaxis: {
+    type: 'category',
+    labels: {
+      style: {
+        ...sharedStyle
+      }
+    }
+  },
+  yaxis: {
+    labels: {
+      style: {
+        ...sharedStyle
+      }
+    }
+  },
+  tooltip: {
+    x: {
+      formatter: (n) => {
+        return `${n}px`;
+      }
+    },
+    style: {
+      ...sharedStyle
+    }
+  },
+  legend: {
+    fontFamily: sharedStyle.fontFamily
+  }
+};
+
 export const coinDetailsTitles = {
   btc: 'Bitcoin vs Ethereum',
   eth: 'Ethereum vs Bitcoin'
