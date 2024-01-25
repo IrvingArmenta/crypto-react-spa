@@ -22,7 +22,7 @@
     "noFallthroughCasesInSwitch": true,
 
     /* Paths */
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "paths": {
       "@/*": ["*"],
       "@style/*": ["../styled-system/*"]
