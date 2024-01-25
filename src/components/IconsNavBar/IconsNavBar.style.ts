@@ -31,3 +31,7 @@ export const iconsNavBarListStyle = css({
     }
   }
 });
+
+export const linkIconStyle = {
+  width: { md: '2.5rem', base: '1.3rem', sm: '2rem' }
+};

@@ -17,10 +17,22 @@ import {
 } from './CoinDetails.style';
 import { css } from '@style/css';
 
-type CoinDetailsPropsType = {
+export type CoinDetailsPropsType = {
   coinId: CoinIdType;
 };
 
+/**
+ * Renders a detailed view for a specific coin, showcasing its price, logo, and OHLC chart.
+ *
+ * @remarks
+ *   - Fetches OHLC data using the `useGetOHLCData` hook.
+ *   - Redirects to the BTC details page if an unsupported coin ID is provided.
+ *   - Displays a back button, coin logo, title, latest price, and currency pair.
+ *   - Renders an interactive candlestick chart using ReactApexChart.
+ *
+ * @param {CoinDetailsPropsType} props - Component props
+ * @prop {CoinIdType} coinId - The ID of the coin to display details for.
+ */
 const CoinDetails: FC<CoinDetailsPropsType> = (props) => {
   const { coinId } = props;
   const { data } = useGetOHLCData(coinId);
@@ -35,7 +47,10 @@ const CoinDetails: FC<CoinDetailsPropsType> = (props) => {
 
   return (
     <>
-      <header className={coinDetailsHeaderWrapStyle}>
+      <header
+        className={coinDetailsHeaderWrapStyle}
+        data-testid="coin-details-header"
+      >
         <Link href="/">
           <a className={coinDetailsBackButtonStyle}>
             <SvgIcon
