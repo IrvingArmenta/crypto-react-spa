@@ -13,9 +13,18 @@ import CoinHeatPrices from './components/CoinHeatPrices';
 import type { FC } from 'react';
 import { css } from '@style/css';
 
+/**
+ * Renders a comprehensive discovery section showcasing market insights and trends.
+ *
+ * @remarks
+ *   - Organizes information using clear headings and visually appealing elements.
+ *   - Highlights market sentiments with currency information blocks and comparison bars.
+ *   - Draws attention to hot sectors and coin prices.
+ *   - Provides a bottom navigation bar for further exploration.
+ */
 const Discover: FC = () => {
   return (
-    <div className={discoverBodyWrapStyle}>
+    <div data-testid="discover-wrap" className={discoverBodyWrapStyle}>
       <ChevronTitle text="Market Sentiments" />
       <CurrencyInfoGroup
         cssProp={discoverBlockStartVerticalSpacingStyle}

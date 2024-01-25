@@ -10,14 +10,14 @@ import morgan from 'morgan';
 dotenv.config();
 
 const PORT = process.env.API_LOCAL_PORT;
-const apiKey = process.env.GECKO_COIN_API;
+const API_KEY = process.env.GECKO_COIN_API;
 const GECKO_CUSTOM_HEADER = 'x-cg-demo-api-key' as const;
 
 const app = express();
 app.use(morgan('tiny'));
 app.use(cors());
 
-if (!apiKey) {
+if (!API_KEY) {
   throw new Error('express: no api key found in the .env file');
 }
 
@@ -42,6 +42,10 @@ app.get('/api/simple-prices', async (_req: Request, res: Response) => {
   }
 });
 
+/**
+ * proxy route `api/ohlc/:coinId` that points to the CoinGecko api `/coins/{id}/ohlc` where `coinId` is the symbol of the coin
+ * reference: https://www.coingecko.com/api/documentation
+ */
 app.get('/api/ohlc/:coinId', async (req: Request, res: Response) => {
   const coinId = req.params.coinId as CoinIdType;
 
@@ -58,7 +62,7 @@ app.get('/api/ohlc/:coinId', async (req: Request, res: Response) => {
         : config.GET_OHLC_URI_ETHBTC,
       {
         headers: {
-          [GECKO_CUSTOM_HEADER]: apiKey
+          [GECKO_CUSTOM_HEADER]: API_KEY
         }
       }
     );

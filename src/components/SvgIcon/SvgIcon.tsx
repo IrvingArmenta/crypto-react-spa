@@ -28,8 +28,12 @@ const SvgIcon: FC<SvgIconPropsType> = (props) => {
   const classname = cx(svgIconStyle, css(cssProp));
 
   return (
-    <svg className={classname} aria-hidden="true">
-      <use href={`#icon-${icon}`} fill="currentColor" />
+    <svg className={classname} aria-hidden="true" data-testid="svg-icon">
+      <use
+        href={`#icon-${icon}`}
+        fill="currentColor"
+        data-testid="svg-icon-use"
+      />
     </svg>
   );
 };

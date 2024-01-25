@@ -5,7 +5,7 @@ import {
   GetPriceUriReturnType
 } from './types';
 import { config } from './config';
-import { CoinIdType } from '@/global-types';
+import type { CoinIdType } from '@/global-types';
 
 /**
  * Fetches simple price data for Bitcoin and Ethereum.
@@ -43,18 +43,26 @@ export const fetchSimplePrices = async () => {
   return frontEndReturn;
 };
 
+/**
+ * Fetches OHLC (Open, High, Low, Close) price data for Bitcoin or Ethereum.
+ *
+ * @param coinId - The ID of the coin to fetch data for ('btc' or 'eth').
+ * @returns An object containing:
+ *   - series: An array of OHLC data points for charting.
+ *   - latestPrice: The latest close price as a string.
+ *   - isNegative: A boolean indicating a negative price trend.
+ * @throws Error if the API request fails or the response is invalid.
+ */
 export const fetchOHLC = async (coinId: CoinIdType) => {
-  const response = await fetch(
-    coinId === 'btc' ? config.GET_OHLC_URI_BTCETH : config.GET_OHLC_URI_ETHBTC,
-    config.FETCH_HEADER
-  );
+  const URI =
+    coinId === 'btc' ? config.GET_OHLC_URI_BTCETH : config.GET_OHLC_URI_ETHBTC;
+
+  const response = await fetch(URI, config.FETCH_HEADER);
 
   const json = (await response.json()) as string | undefined;
 
   if (!json) {
-    throw new Error(
-      `Something went wrong with ${config.GET_SIMPLE_PRICE_URI} request`
-    );
+    throw new Error(`Something went wrong with ${URI} request`);
   }
 
   const dataArray = json as unknown as GetOhlcUriReturnType;

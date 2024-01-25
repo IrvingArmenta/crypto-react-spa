@@ -6,12 +6,12 @@ const FETCH_HEADER: RequestInit | undefined = getEnv().isDevelopment
   ? undefined
   : {
       headers: {
-        'x-cg-demo-api-key': API_KEY || '$$$$$$$'
+        'x-cg-demo-api-key': API_KEY || ''
       }
     };
 
 const API_BASE_URI = getEnv().isDevelopment
-  ? ('http://localhost:3001' as const)
+  ? (`http://localhost:3001` as const)
   : ('https://api.coingecko.com/api/v3' as const);
 
 export const GET_SIMPLE_PRICE_URI = getEnv().isDevelopment
