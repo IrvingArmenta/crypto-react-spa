@@ -4,7 +4,7 @@ import CurrencyInfoBlock, {
 } from './CurrencyInfoBlock';
 import { currencyInfoGroupWrapStyle } from './CurrencyInfoGroup.style';
 import type { SystemStyleObject } from '@style/types';
-import { css } from '@style/css';
+import { css, cx } from '@style/css';
 
 type CurrencyInfoGroupPropsType = {
   currencyDataBlocks: CurrencyInfoBlockPropsType[];
@@ -24,8 +24,13 @@ const CurrencyInfoGroup: FC<CurrencyInfoGroupPropsType> = (props) => {
     );
   }
 
+  const currencyInfoGroupWrapClassname = cx(
+    currencyInfoGroupWrapStyle,
+    css(cssProp)
+  );
+
   return (
-    <div className={css(currencyInfoGroupWrapStyle, cssProp)}>
+    <div className={currencyInfoGroupWrapClassname}>
       {currencyDataBlocks.map((infoBlockProps) => {
         return (
           <CurrencyInfoBlock key={infoBlockProps.title} {...infoBlockProps} />
