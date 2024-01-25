@@ -1,6 +1,12 @@
+/** @type {import("@typescript-eslint/utils/dist/ts-eslint/Linter").Linter.ConfigType} */
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -23,7 +29,20 @@ module.exports = {
       { allowConstantExport: true }
     ],
     'react/react-in-jsx-scope': 0,
-    'react/prop-types': 0
+    'react/prop-types': 0,
+    'no-console': 'warn',
+    '@typescript-eslint/naming-convention': [
+      'warn',
+      {
+        selector: 'enumMember',
+        format: ['UPPER_CASE']
+      },
+      {
+        selector: 'typeLike',
+        format: ['PascalCase'],
+        suffix: ['Type']
+      }
+    ]
   },
   overrides: [
     {
