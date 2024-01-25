@@ -11,6 +11,17 @@ type CurrencyInfoGroupPropsType = {
   cssProp?: SystemStyleObject;
 };
 
+/**
+ * Renders a group of currency information blocks, ensuring a maximum of 3 blocks.
+ *
+ * @remarks
+ *   - Validates the provided `currencyDataBlocks` array for length requirements.
+ *   - Throws errors for invalid input to prevent unexpected rendering issues.
+ *
+ * @param {CurrencyInfoGroupPropsType} props - Component props
+ * @prop {CurrencyInfoBlockPropsType[]} currencyDataBlocks - Array of props for individual CurrencyInfoBlock components.
+ * @prop {SystemStyleObject} cssProp - Additional CSS classes to apply to the component.
+ */
 const CurrencyInfoGroup: FC<CurrencyInfoGroupPropsType> = (props) => {
   const { currencyDataBlocks, cssProp } = props;
 

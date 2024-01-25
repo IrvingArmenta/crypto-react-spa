@@ -27,6 +27,11 @@ export type GetPriceUriFrontendReturnType = {
 /** [TIME, OPEN, HIGH, LOW, CLOSE] */
 export type GetOhlcUriReturnType = [number, number, number, number, number][];
 
+/**
+ * series: [
+ *   data: [TIME, OPEN, HIGH, LOW, CLOSE][]
+ * ]
+ */
 export type GetOhlcUriFrontendReturnType = {
   series: {
     data: [number, number, number, number, number][];

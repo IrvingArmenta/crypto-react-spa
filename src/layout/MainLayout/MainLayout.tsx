@@ -8,7 +8,11 @@ type MainLayoutPropsType = {
 const MainLayout: FC<MainLayoutPropsType> = (props) => {
   const { children } = props;
 
-  return <div className={mainWrapperStyle}>{children}</div>;
+  return (
+    <div data-testid="main-layout" className={mainWrapperStyle}>
+      {children}
+    </div>
+  );
 };
 
 export default MainLayout;
