@@ -6,6 +6,7 @@ import { mockOhlcData } from './mockData';
 import * as Hooks from '@/api/hooks';
 import { Redirect } from 'wouter';
 import { CoinIdType } from '@/global-types';
+import CompaniesTable from './CompaniesTable';
 
 jest.mock('react-apexcharts', () => jest.fn(() => <></>));
 
@@ -63,7 +64,7 @@ describe('CoinDetails.tsx', () => {
     expect(container).toBeEmptyDOMElement();
   });
 
-  it('should redirect to /coin-details/btc when coinId is not btc or eth', async () => {
+  it('should redirect to /coin-details/btc when coinId is not btc or eth', () => {
     useGetOHLCDataSpy.mockReturnValueOnce({ ...mockGetOHLCReturn });
     render(<CoinDetails coinId={'xxx' as 'btc'} />);
 
@@ -90,4 +91,10 @@ describe('CoinDetails.tsx', () => {
       expect(screen.getByText(expectedCoinSuffix)).toBeInTheDocument();
     }
   );
+  it('should call CompaniesTable with the expected prop', () => {
+    useGetOHLCDataSpy.mockReturnValueOnce({ ...mockGetOHLCReturn });
+    render(<CoinDetails coinId="eth" />);
+
+    expect(CompaniesTable).toHaveBeenCalledWith({ coinId: 'eth' }, {});
+  });
 });

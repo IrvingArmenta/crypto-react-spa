@@ -117,7 +117,7 @@ export const fetchCompaniesHoldings = async (coinId: CoinIdType) => {
   const frontendData: GetCompaniesUriFrontendReturnType = {
     totalHoldings: data.total_holdings,
     totalValueUSD: currencyFormat(data.total_value_usd),
-    companies: data.companies.slice(0, 7).map((company) => ({
+    companies: data.companies.slice(0, 5).map((company) => ({
       name: company.name,
       totalHoldings: company.total_holdings,
       totalCurrentValueUsd: currencyFormat(company.total_current_value_usd),

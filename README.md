@@ -37,6 +37,10 @@ This will start both the `LOCAL_API` and `VITE` service using `concurrently`
 
 ##### express server will start running in port: 3001
 
+**IMPORTANT**
+
+- you need an api key from Gecko Coin to access the api locally -> https://www.coingecko.com/
+
 ---
 
 ## Available Scripts

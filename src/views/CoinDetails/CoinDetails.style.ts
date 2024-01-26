@@ -2,6 +2,7 @@ import { css } from '@style/css';
 
 export const coinDetailsHeaderWrapStyle = css({
   marginBlockEnd: '8px',
+  pos: 'relative',
   paddingInlineStart: { base: '8px', sm: '16px', md: '32px' },
   display: 'flex',
   alignItems: 'center'
@@ -30,7 +31,7 @@ export const coinDetailsTitleWrapStyle = css({
     marginInlineStart: '3.6rem',
     '& > span': {
       textTransform: 'uppercase',
-      fontSize: '1.2rem',
+      fontSize: { sm: '3.5vw', md: '1.2rem' },
       fontWeight: '700'
     },
     '&[data-is-negative=true]': {
@@ -43,7 +44,7 @@ export const coinDetailsTitleWrapStyle = css({
 });
 
 export const apexChartWrapperStyle = css({
-  height: '45%',
+  height: { base: '35%', md: '45%' },
   animation: 'fadeIn'
 });
 
@@ -65,6 +66,7 @@ export const coinDetailsBackButtonStyle = css({
 export const coinDetailsBottomRow = css({
   display: 'flex',
   justifyContent: 'center',
+  alignItems: 'center',
   marginBlockStart: 'auto',
   marginInline: 'auto',
   maxW: '1024px',
@@ -91,7 +93,7 @@ export const coinDetailsBottomButtons = css({
     alignItems: 'center',
     color: 'white',
     padding: { sm: '0.8rem', md: '1rem' },
-    fontSize: '2rem',
+    fontSize: { base: '1rem', md: '2rem' },
     bgColor: 'negativeRed',
     borderRadius: '16px',
     _firstOfType: {

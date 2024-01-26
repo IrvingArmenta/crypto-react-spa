@@ -1,11 +1,13 @@
 import fetchMock from 'jest-fetch-mock'; // Import jest-fetch-mock
 import {
-  GetOhlcUriFrontendReturnType,
-  GetPriceUriFrontendReturnType,
-  GetPriceUriReturnType
-} from './types';
-import { mockOhlcData } from './mockData';
-import { fetchOHLC, fetchSimplePrices } from './index';
+  mockChartData,
+  mockGetCompaniesData,
+  mockGetCompaniesResponse,
+  mockGetSimplePriceData,
+  mockOhlcData,
+  mockSimplePricesResponse
+} from './mockData';
+import { fetchOHLC, fetchSimplePrices, fetchCompaniesHoldings } from './index';
 import { CoinIdType } from '@/global-types';
 import { config } from './config';
 
@@ -14,42 +16,6 @@ fetchMock.enableMocks(); // Enable mocking globally;
 beforeEach(() => {
   fetchMock.resetMocks(); // Clear any previous mocks before each test
 });
-
-const mockChartData: GetOhlcUriFrontendReturnType = {
-  series: [
-    {
-      data: mockOhlcData
-    }
-  ],
-  latestPrice: '0.0554',
-  isNegative: false
-};
-
-const mockSimplePricesResponse: GetPriceUriReturnType = {
-  bitcoin: {
-    eth: 0.9842,
-    eth_24h_change: 0.4231,
-    btc: 1,
-    btc_24h_change: 0
-  },
-  ethereum: {
-    eth: 1,
-    eth_24h_change: 0,
-    btc: 17.422,
-    btc_24h_change: -2.234
-  }
-};
-
-const mockGetSimplePriceData: GetPriceUriFrontendReturnType = {
-  btc: {
-    price: '0.9842',
-    percentageDiff24h: '0.4231%'
-  },
-  eth: {
-    price: '17.422',
-    percentageDiff24h: '-2.2340%'
-  }
-};
 
 describe('api/fetch functions', () => {
   describe('fetchSimplePrices', () => {
@@ -94,6 +60,34 @@ describe('api/fetch functions', () => {
         await expect(fetchOHLC(coinId as CoinIdType)).rejects.toThrow(
           `Something went wrong with ${URI} request`
         );
+      }
+    );
+  });
+
+  describe('fetchCompaniesHoldings', () => {
+    it.each(['btc', 'eth'])(
+      'fetches data successfully for coinId: %s',
+      async (coinId) => {
+        fetchMock.mockResponseOnce(JSON.stringify(mockGetCompaniesResponse));
+
+        const data = await fetchCompaniesHoldings(coinId as CoinIdType);
+
+        expect(data).toEqual(mockGetCompaniesData);
+      }
+    );
+
+    it.each(['btc', 'eth'])(
+      'should return the expected error message for %s if json response is falsy',
+      async (coinId) => {
+        fetchMock.mockResponseOnce(JSON.stringify(''));
+        const URI = {
+          btc: config.GET_COMPANY_URI_BTC,
+          eth: config.GET_COMPANY_URI_ETH
+        }[coinId];
+
+        await expect(
+          fetchCompaniesHoldings(coinId as CoinIdType)
+        ).rejects.toThrow(`Something went wrong with ${URI} request`);
       }
     );
   });
