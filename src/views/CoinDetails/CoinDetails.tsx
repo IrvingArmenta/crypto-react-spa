@@ -95,11 +95,26 @@ const CoinDetails: FC<CoinDetailsPropsType> = (props) => {
           height="100%"
           id="crypto-chart"
         />
+        <a
+          href="https://www.coingecko.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={css({
+            color: 'positiveGreen',
+            filter: 'brightness(0.6)',
+            _hover: { filter: 'brightness(1.1)' }
+          })}
+        >
+          Data from CoinGecko
+        </a>
       </div>
       <CompaniesTable coinId={coinId} />
       <footer className={coinDetailsBottomRow}>
         <button type="button">
-          <SvgIcon icon="robot-img" cssProp={css.raw({ width: '5rem' })} />
+          <SvgIcon
+            icon="robot-img"
+            cssProp={css.raw({ width: { md: '5rem', base: '14vw' } })}
+          />
           <span>Trading Bot</span>
         </button>
         <div className={coinDetailsBottomButtons}>

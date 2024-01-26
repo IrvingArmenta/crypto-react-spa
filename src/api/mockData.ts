@@ -1,4 +1,11 @@
-import { GetOhlcUriReturnType } from '@/api/types';
+import type {
+  GetCompaniesUriFrontendReturnType,
+  GetCompaniesUriReturnType,
+  GetOhlcUriFrontendReturnType,
+  GetOhlcUriReturnType,
+  GetPriceUriFrontendReturnType,
+  GetPriceUriReturnType
+} from '@/api/types';
 
 /**
  * OHLC data being used for unit testing
@@ -35,3 +42,84 @@ export const mockOhlcData: GetOhlcUriReturnType = [
   [1706155200000, 0.0557, 0.0557, 0.0553, 0.0553],
   [1706169600000, 0.0554, 0.0554, 0.0554, 0.0554]
 ];
+
+export const mockChartData: GetOhlcUriFrontendReturnType = {
+  series: [
+    {
+      data: mockOhlcData
+    }
+  ],
+  latestPrice: '0.0554',
+  isNegative: false
+};
+
+export const mockSimplePricesResponse: GetPriceUriReturnType = {
+  bitcoin: {
+    eth: 0.9842,
+    eth_24h_change: 0.4231,
+    btc: 1,
+    btc_24h_change: 0
+  },
+  ethereum: {
+    eth: 1,
+    eth_24h_change: 0,
+    btc: 17.422,
+    btc_24h_change: -2.234
+  }
+};
+
+export const mockGetSimplePriceData: GetPriceUriFrontendReturnType = {
+  btc: {
+    price: '0.9842',
+    percentageDiff24h: '0.4231%'
+  },
+  eth: {
+    price: '17.422',
+    percentageDiff24h: '-2.2340%'
+  }
+};
+
+export const mockGetCompaniesResponse: GetCompaniesUriReturnType = {
+  total_holdings: 10000,
+  total_value_usd: 10000,
+  market_cap_dominance: 13000,
+  companies: [
+    {
+      name: 'Google',
+      symbol: 'G',
+      country: 'US',
+      total_holdings: 500,
+      total_entry_value_usd: 1200,
+      total_current_value_usd: 2111,
+      percentage_of_total_supply: 1224
+    },
+    {
+      name: 'Apple',
+      symbol: 'AP',
+      country: 'HK',
+      total_holdings: 400,
+      total_entry_value_usd: 1100,
+      total_current_value_usd: 2111,
+      percentage_of_total_supply: 1224
+    }
+  ]
+};
+
+export const mockGetCompaniesData: GetCompaniesUriFrontendReturnType = {
+  totalHoldings: 10000,
+  totalValueUSD: '$10,000.00',
+  companies: [
+    {
+      name: 'Google',
+      country: 'US',
+      totalHoldings: 500,
+      totalCurrentValueUsd: '$2,111.00'
+    },
+    {
+      name: 'Apple',
+      country: 'HK',
+      totalHoldings: 400,
+      totalCurrentValueUsd: '$2,111.00'
+    }
+  ]
+};

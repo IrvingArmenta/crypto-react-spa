@@ -9,7 +9,7 @@ import morgan from 'morgan';
 
 dotenv.config();
 
-const PORT = process.env.API_LOCAL_PORT;
+const PORT = 3001;
 const API_KEY = process.env.GECKO_COIN_API;
 const GECKO_CUSTOM_HEADER = 'x-cg-demo-api-key' as const;
 
@@ -77,7 +77,7 @@ app.get('/api/ohlc/:coinId', async (req: Request, res: Response) => {
 });
 
 /**
- * proxy route `api/ohlc/:coinId` that points to the CoinGecko api `/coins/{id}/ohlc` where `coinId` is the symbol of the coin
+ * proxy route `api/companies/:coinId` that points to the CoinGecko api `/companies/public_treasury/{coin_id}` where `coinId` is the symbol of the coin
  * reference: https://www.coingecko.com/api/documentation
  */
 app.get('/api/companies/:coinId', async (req: Request, res: Response) => {

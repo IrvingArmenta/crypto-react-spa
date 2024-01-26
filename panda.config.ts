@@ -15,10 +15,12 @@ export default defineConfig({
   // Files to exclude
   exclude: [],
 
+  presets: ['@pandacss/preset-base'],
+
   // Useful for theme customization
   theme: {
     breakpoints: {
-      sm: '360px',
+      sm: '380px',
       md: '640px',
       lg: '860px',
       xl: '1280px',
@@ -98,8 +100,7 @@ export default defineConfig({
   importMap: '@style',
   watch: true,
   hash: true,
-
-  presets: ['@pandacss/preset-base'],
+  eject: true,
 
   // The output directory for your css system
   outdir: 'styled-system'

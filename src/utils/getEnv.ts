@@ -8,6 +8,7 @@
 export function getEnv() {
   const production = process.env.NODE_ENV === 'production';
   const development = process.env.NODE_ENV === 'development';
+  const test = process.env.NODE_ENV === 'test';
 
-  return { isProduction: production, isDevelopment: development };
+  return { isProduction: production, isDevelopment: development, isTest: test };
 }

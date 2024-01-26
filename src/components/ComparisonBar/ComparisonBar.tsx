@@ -8,7 +8,7 @@ import {
 import type { FC } from 'react';
 import { getPercentages } from './utils';
 import type { SystemStyleObject } from '@style/types';
-import { css } from '@style/css';
+import { css, cx } from '@style/css';
 
 type ComparisonBarSideType = {
   value: number;
@@ -47,9 +47,14 @@ const ComparisonBar: FC<ComparisonBarPropsType> = (props) => {
     '--negative-bar-width': `calc(${negativeBarPercentage}% - ${BARS_MAGIC_NUMBER}px)`
   } as React.CSSProperties;
 
+  const labelsWrapClassName = cx(
+    comparisonBarLabelsWrapStyle,
+    css({ fontSize: { base: '3.6vw', md: '1.4rem' } })
+  );
+
   return (
     <div className={css(cssProp)} data-testid="comparison-bar-wrap">
-      <div className={comparisonBarLabelsWrapStyle}>
+      <div className={labelsWrapClassName}>
         <label>{positiveSide.label}</label>
         <label>{negativeSide.label}</label>
       </div>
