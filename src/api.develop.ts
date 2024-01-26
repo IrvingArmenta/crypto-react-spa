@@ -9,7 +9,7 @@ import morgan from 'morgan';
 
 dotenv.config();
 
-const PORT = process.env.API_LOCAL_PORT;
+const PORT = 3001;
 const API_KEY = process.env.GECKO_COIN_API;
 const GECKO_CUSTOM_HEADER = 'x-cg-demo-api-key' as const;
 

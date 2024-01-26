@@ -2,6 +2,7 @@ import { css } from '@style/css';
 
 export const coinDetailsHeaderWrapStyle = css({
   marginBlockEnd: '8px',
+  pos: 'relative',
   paddingInlineStart: { base: '8px', sm: '16px', md: '32px' },
   display: 'flex',
   alignItems: 'center'
