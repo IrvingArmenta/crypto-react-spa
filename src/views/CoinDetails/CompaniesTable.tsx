@@ -4,38 +4,64 @@ import { css } from '@style/css';
 import type { FC } from 'react';
 
 const TableStyle = css({
+  height: 'auto',
   width: '100%',
-  '& tr': { _odd: { bgColor: 'gray.200' } },
-  '& td': {
-    padding: { md: '0.5rem', sm: '0.2rem' },
-    textAlign: 'center'
+  fontSize: { base: '0.8rem', md: '1rem' },
+  '& tbody': {
+    '& tr': { _odd: { bgColor: 'gray.200' } }
   },
-  height: '100%'
+  '& td': {
+    padding: { md: '0.8rem', base: '0.5rem' },
+    textAlign: 'center'
+  }
 });
 
-const CompaniesTable: FC<{
+type CompaniesTablePropsType = {
   coinId: CoinIdType;
-}> = (props) => {
+};
+
+/**
+ * Renders a table displaying top public companies with Bitcoin or Ethereum holdings.
+    @remarks
+    - Fetches data using the useGetCompaniesData hook.
+    - Handles cases where data is not yet available or empty.
+    - Displays a heading indicating the specific coin type.
+    - Presents company data in a tabular format with relevant fields.
+    @param {CoinIdType} coinId - The ID of the coin to fetch data for ('btc' or 'eth').
+*/
+const CompaniesTable: FC<CompaniesTablePropsType> = (props) => {
   const { coinId } = props;
   const { data: companiesData } = useGetCompaniesData(coinId);
 
-  if (!companiesData || !companiesData.companies.length) {
-    return <p>no data...</p>;
-  }
+  const noData = !companiesData || !companiesData.companies.length;
 
   return (
-    <>
+    <div
+      className={css({
+        flex: 1,
+        display: 'flex',
+        alignItems: 'center',
+        flexDir: 'column',
+        justifyContent: 'space-evenly',
+        overflow: 'auto',
+        padding: { base: '0.5rem', md: '1rem' }
+      })}
+    >
       <h2 className={css({ fontWeight: 'bold' })}>
-        Top Public companies {coinId === 'btc' ? 'Bitcoin' : 'Ethereum'}
+        Top Public companies {coinId === 'btc' ? 'Bitcoin ' : 'Ethereum '}
         holdings
       </h2>
-      <div className={css({ flex: 1, overflow: 'hidden', padding: '1.5rem' })}>
+      {noData ? (
+        <p>no data to show</p>
+      ) : (
         <table className={TableStyle}>
           <thead>
-            <th>Company</th>
-            <th>Total Holdings</th>
-            <th>Total Value in Currency USD</th>
-            <th>Country</th>
+            <tr>
+              <th>Company</th>
+              <th>Total Holdings</th>
+              <th>Total Value in USD</th>
+              <th>Country</th>
+            </tr>
           </thead>
           <tbody>
             {companiesData.companies.map((company) => (
@@ -48,8 +74,8 @@ const CompaniesTable: FC<{
             ))}
           </tbody>
         </table>
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 

@@ -99,7 +99,10 @@ const CoinDetails: FC<CoinDetailsPropsType> = (props) => {
       <CompaniesTable coinId={coinId} />
       <footer className={coinDetailsBottomRow}>
         <button type="button">
-          <SvgIcon icon="robot-img" cssProp={css.raw({ width: '5rem' })} />
+          <SvgIcon
+            icon="robot-img"
+            cssProp={css.raw({ width: { md: '5rem', base: '14vw' } })}
+          />
           <span>Trading Bot</span>
         </button>
         <div className={coinDetailsBottomButtons}>
