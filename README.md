@@ -8,13 +8,17 @@ Small application that showcases the usage of a crypto api in a modern feeling f
 
 - Node.js (18+)
 - pnpm (package manager)
+- #### Preferable
+  - this was built on `windows` using `vscode` as the IDE.
+
+_other `OS` and other `IDEs` haven't been properly tested_
 
 ### Installation:
 
 #### 1.Clone the repo:
 
 ```bash
-$ git clone https://github.com/your-username/crypto-react-spa.git
+$ git clone git@github.com:IrvingArmenta/crypto-react-spa.git
 ```
 
 #### 2.Install dependencies:
@@ -28,7 +32,7 @@ $ pnpm install
 #### 1.Start the development server:
 
 ```bash
-$ pnpm run dev
+$ pnpm dev
 ```
 
 This will start both the `LOCAL_API` and `VITE` service using `concurrently`
@@ -37,9 +41,9 @@ This will start both the `LOCAL_API` and `VITE` service using `concurrently`
 
 ##### express server will start running in port: 3001
 
-**IMPORTANT**
+**---IMPORTANT---**
 
-- you need an api key from Gecko Coin to access the api locally -> https://www.coingecko.com/
+You need an api key from Gecko Coin to access the api locally -> [CoinGecko API - Getting Started](https://apiguide.coingecko.com/getting-started/getting-started)
 
 ---
 
@@ -65,9 +69,22 @@ This will start both the `LOCAL_API` and `VITE` service using `concurrently`
 - React: https://react.dev/
 - TypeScript: https://www.typescriptlang.org/
 - SWR: https://swr.vercel.app/
+  - Chose SWR for it's multiple features regarding the auto fetch of stale data and the updates it automatically handles
+  - I have used custom hooks before, named like `useFetch()` that handles loading states and such, but `swr` it's a much more robust solution.
+  - I have used it before and is a product from Vercel which is a company I follow and trust
 - wouter: https://github.com/molefrog/wouter
+  - Chose Wouter because of it's minimum size `1.5kb` , I am more experienced with `react-router 6` but I just needed a simple way to render the navigation
+  - it is true that this wasn't necessary as I could just found a more simplier method `(like using state in App.tsx)`, but wanted to implement Wouter for possible expansion of routes
 - ApexCharts: https://github.com/apexcharts
+  - First time using Apexcharts, the series data structure is well explained and seemed to fit my needs.
+  - Tried using `ant design` graphs, but the documents and the actual components do not match at all, therefore, it was really a time investment testing
+  - Looked into google charts (candlesticks) but they're not very good looking (they look stale) and it seems they're not built for responsive design
+  - I don't think there is any issue other than it still depends on Class Based Components.
 - pandaCSS: https://panda-css.com/
+  - A "modern" CSS-IN-JS solution, I have used `stitches` before and I like the "security" it provides with SSR styles, I enjoy working with typescript autocompletion and other many helping functions that control how styles are rendered, it also generate css in a modern way by using `@layer` as it's anchor point in the app
+  - I have more experience using `styled-components` but I'd like to distant myself from it, seems it lacks more modern features out of the box (ssr for example) also it seems the teams I have worked for do not understand or follow a weird way of using it, it has caused some bad impact on me.
+  - Have also used just simple `SCSS modules` and `CSS modules` with `PostCSS` and also the old school way of just using css files directly imported, I have experience also using `LESS`, and other pre-processors
+  - I feel interest in using `open-props` and modules in the future, but in an effective way.
 
 ### Backend (backend for the frontend)
 
@@ -91,6 +108,7 @@ This will start both the `LOCAL_API` and `VITE` service using `concurrently`
 - concurrently: https://www.npmjs.com/package/concurrently
 - tsx: https://www.npmjs.com/package/tsx
 - dotenv: https://www.npmjs.com/package/dotenv
+- majestic: https://www.npmjs.com/package/majestic
 - identity-obj-proxy: https://www.npmjs.com/package/identity-obj-proxy
 
 ## Implementation time
@@ -116,7 +134,9 @@ _please bear in mind that these are approximations_
   - Implementation and customization of the page
   - Understanding, creation and implementation for protected API keys
 
-- Test & docs: **9 hours**
+- Test & docs: **12 hours**
   - Implementation and fixes for Jest environment
   - unit testing to ~almost~ 100 coverage
   - comment and docs writing
+
+Around a total of: `42 hours`
