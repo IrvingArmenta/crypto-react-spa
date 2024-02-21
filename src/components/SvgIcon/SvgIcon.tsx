@@ -3,6 +3,7 @@ import { css, cx } from '@style/css';
 import { type FC } from 'react';
 import { svgIconStyle } from './SvgIcon.style';
 import { SystemStyleObject } from '@style/types';
+import { setTestProps } from '@/utils/setTestProps';
 
 type SvgIconPropsType = {
   icon: IconNamesType;
@@ -32,7 +33,7 @@ const SvgIcon: FC<SvgIconPropsType> = (props) => {
       <use
         href={`#icon-${icon}`}
         fill="currentColor"
-        data-testid="svg-icon-use"
+        {...setTestProps({ testid: 'svg-icon-use' })}
       />
     </svg>
   );

@@ -12,6 +12,7 @@ import { iconNavLinks, mockCurrencyInfoGroupBlocks } from './constants';
 import CoinHeatPrices from './components/CoinHeatPrices';
 import type { FC } from 'react';
 import { css } from '@style/css';
+import { setTestProps } from '@/utils/setTestProps';
 
 /**
  * Renders a comprehensive discovery section showcasing market insights and trends.
@@ -24,7 +25,10 @@ import { css } from '@style/css';
  */
 const Discover: FC = () => {
   return (
-    <div data-testid="discover-wrap" className={discoverBodyWrapStyle}>
+    <div
+      {...setTestProps({ testid: 'discover-wrap' })}
+      className={discoverBodyWrapStyle}
+    >
       <ChevronTitle text="Market Sentiments" />
       <CurrencyInfoGroup
         cssProp={discoverBlockStartVerticalSpacingStyle}
