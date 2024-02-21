@@ -42,6 +42,11 @@ const coinPriceBoxSharedStyles = css.raw({
   },
   '&[data-is-negative=true]': {
     bgColor: 'negativeRed'
+  },
+  '&:has(a)': {
+    _hover: {
+      filter: 'brightness(1.1)'
+    }
   }
 });
 

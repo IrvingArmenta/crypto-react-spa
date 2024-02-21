@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import * as Hooks from '@/api/hooks';
 import CoinHeatPrices from './CoinHeatPrices';
@@ -11,6 +10,10 @@ jest.mock('@/components', () => ({
   CurrencyInfoGroup: jest.fn(() => <></>),
   CoinHeatPrices: jest.fn(() => <></>),
   LoadingSvg: jest.fn(() => <></>)
+}));
+
+jest.mock('wouter', () => ({
+  Link: jest.fn(({ children }) => <>{children}</>)
 }));
 
 const mockGetSimplePriceData: GetPriceUriFrontendReturnType = {

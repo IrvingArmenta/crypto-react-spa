@@ -52,9 +52,7 @@ const CoinHeatPrices: FC = () => {
         </p>
         <span className="diff">{data?.btc.percentageDiff24h}</span>
         <Link href="/coin-details/btc">
-          <a title="Go to Bitcoin Details">
-            <span className={css({ srOnly: true })}>Bitcoin Details</span>
-          </a>
+          <span className={css({ srOnly: true })}>Bitcoin Details</span>
         </Link>
       </article>
       <article
@@ -68,9 +66,7 @@ const CoinHeatPrices: FC = () => {
         </p>
         <span className="diff">{data?.eth.percentageDiff24h}</span>
         <Link href="/coin-details/eth">
-          <a title="Go to Ethereum Details">
-            <span className={css({ srOnly: true })}>Ethereum Details</span>
-          </a>
+          <span className={css({ srOnly: true })}>Ethereum Details</span>
         </Link>
       </article>
     </div>

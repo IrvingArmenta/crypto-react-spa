@@ -33,12 +33,12 @@ export function useGetSimplePriceData() {
 export function useGetOHLCData(coinId: CoinIdType) {
   const fetchKey = `get/ohlc/${coinId}`;
 
-  const { data, isLoading, isValidating } = useSWR(
+  const { data, isLoading, isValidating, error } = useSWR(
     [fetchKey, coinId],
     ([, coinId]) => fetchOHLC(coinId)
   );
 
-  return { data, isLoading, isValidating };
+  return { data, isLoading, isValidating, error: error as Error | undefined };
 }
 
 /**
@@ -53,10 +53,10 @@ export function useGetOHLCData(coinId: CoinIdType) {
 export function useGetCompaniesData(coinId: CoinIdType) {
   const fetchKey = `get/companies/${coinId}`;
 
-  const { data, isLoading, isValidating } = useSWR(
+  const { data, isLoading, isValidating, error } = useSWR(
     [fetchKey, coinId],
     ([, coinId]) => fetchCompaniesHoldings(coinId)
   );
 
-  return { data, isLoading, isValidating };
+  return { data, isLoading, isValidating, error: error as Error | undefined };
 }

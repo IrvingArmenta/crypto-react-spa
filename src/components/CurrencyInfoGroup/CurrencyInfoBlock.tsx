@@ -1,6 +1,5 @@
-import { css } from '@style/css';
 import type { FC } from 'react';
-import { currencyInfoBlockStyle } from './CurrencyInfoBlock.style';
+import { currencyInfoBlockStyleSVA } from './CurrencyInfoBlock.style';
 
 export type CurrencyInfoBlockPropsType = {
   title: string;
@@ -23,16 +22,16 @@ export type CurrencyInfoBlockPropsType = {
 const CurrencyInfoBlock: FC<CurrencyInfoBlockPropsType> = (props) => {
   const { title, currentValue, percentageDiff } = props;
 
-  const color = percentageDiff.includes('+') ? 'positiveGreen' : 'negativeRed';
+  const color = percentageDiff.includes('-') ? 'negativeRed' : 'positiveGreen';
+  const classes = currencyInfoBlockStyleSVA({
+    isNegative: percentageDiff.includes('-')
+  });
 
   return (
-    <article className={currencyInfoBlockStyle.wrap}>
-      <h3 className={currencyInfoBlockStyle.title}>{title}</h3>
-      <div className={currencyInfoBlockStyle.value}>{currentValue}</div>
-      <span
-        data-testid={color}
-        className={css(currencyInfoBlockStyle.percentage, { color })}
-      >
+    <article className={classes.wrap}>
+      <h3 className={classes.title}>{title}</h3>
+      <div className={classes.value}>{currentValue}</div>
+      <span data-testid={color} className={classes.percentage}>
         {percentageDiff}
       </span>
     </article>

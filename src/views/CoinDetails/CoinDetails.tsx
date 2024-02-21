@@ -62,8 +62,8 @@ const CoinDetails: FC<CoinDetailsPropsType> = (props) => {
         className={coinDetailsHeaderWrapStyle}
         data-testid="coin-details-header"
       >
-        <Link href="/">
-          <a className={coinDetailsBackButtonStyle}>
+        <Link href="/" asChild>
+          <a href="will-be-replaced" className={coinDetailsBackButtonStyle}>
             <SvgIcon
               icon="chevron"
               cssProp={css.raw({

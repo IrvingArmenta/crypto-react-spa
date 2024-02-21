@@ -101,29 +101,37 @@ export const fetchOHLC = async (coinId: CoinIdType) => {
  *      - country: The country in which the company is located.
  */
 export const fetchCompaniesHoldings = async (coinId: CoinIdType) => {
-  const URI =
-    coinId === 'btc' ? config.GET_COMPANY_URI_BTC : config.GET_COMPANY_URI_ETH;
+  try {
+    const URI =
+      coinId === 'btc'
+        ? config.GET_COMPANY_URI_BTC
+        : config.GET_COMPANY_URI_ETH;
 
-  const response = await fetch(URI, config.FETCH_HEADER);
+    const response = await fetch(URI, config.FETCH_HEADER);
 
-  const json = (await response.json()) as string | undefined;
+    const json = (await response.json()) as string;
 
-  if (!json) {
-    throw new Error(`Something went wrong with ${URI} request`);
+    if (!json) {
+      throw new Error(`Something went wrong with ${URI} request`);
+    }
+
+    const { total_value_usd, total_holdings, companies } =
+      json as unknown as GetCompaniesUriReturnType;
+
+    const frontendData: GetCompaniesUriFrontendReturnType = {
+      totalHoldings: total_holdings,
+      totalValueUSD: currencyFormat(total_value_usd),
+      companies: companies.slice(0, 5).map((company) => ({
+        name: company.name,
+        totalHoldings: company.total_holdings,
+        totalCurrentValueUsd: currencyFormat(company.total_current_value_usd),
+        country: company.country
+      }))
+    };
+
+    return frontendData;
+  } catch (err) {
+    const error = err as Error;
+    throw new Error(error.message);
   }
-
-  const data = json as unknown as GetCompaniesUriReturnType;
-
-  const frontendData: GetCompaniesUriFrontendReturnType = {
-    totalHoldings: data.total_holdings,
-    totalValueUSD: currencyFormat(data.total_value_usd),
-    companies: data.companies.slice(0, 5).map((company) => ({
-      name: company.name,
-      totalHoldings: company.total_holdings,
-      totalCurrentValueUsd: currencyFormat(company.total_current_value_usd),
-      country: company.country
-    }))
-  };
-
-  return frontendData;
 };

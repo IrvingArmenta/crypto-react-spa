@@ -5,7 +5,7 @@ const sharedStyle = {
   fontFamily: 'inherit'
 };
 
-export const candlesticksChartOptions: ApexOptions = {
+export const candlesticksChartOptions = {
   chart: {
     type: 'candlestick'
   },
@@ -54,46 +54,7 @@ export const candlesticksChartOptions: ApexOptions = {
       }
     }
   }
-};
-
-export const treemapChartOptions: ApexOptions = {
-  chart: {
-    type: 'pie'
-  },
-  dataLabels: {
-    style: {
-      ...sharedStyle
-    }
-  },
-  xaxis: {
-    type: 'category',
-    labels: {
-      style: {
-        ...sharedStyle
-      }
-    }
-  },
-  yaxis: {
-    labels: {
-      style: {
-        ...sharedStyle
-      }
-    }
-  },
-  tooltip: {
-    x: {
-      formatter: (n) => {
-        return `${n}px`;
-      }
-    },
-    style: {
-      ...sharedStyle
-    }
-  },
-  legend: {
-    fontFamily: sharedStyle.fontFamily
-  }
-};
+} satisfies ApexOptions;
 
 export const coinDetailsTitles = {
   btc: 'Bitcoin vs Ethereum',

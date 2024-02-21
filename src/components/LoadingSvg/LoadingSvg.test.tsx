@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { LoadingSvg } from '..';
 import type { LoadingSvgPropsType } from './LoadingSvg';
@@ -8,6 +7,10 @@ const mockPallete: LoadingSvgPropsType['pallete'] = {
   color2: 'rebeccapurple',
   color3: 'green'
 };
+
+jest.mock('wouter', () => ({
+  Link: jest.fn(({ children }) => <>{children}</>)
+}));
 
 describe('@components/LoadingSvg.tsx', () => {
   it('should render the component with the expected values when pallete is not defined', () => {

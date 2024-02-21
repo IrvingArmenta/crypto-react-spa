@@ -2,7 +2,7 @@ import { Switch, Route } from 'wouter';
 import { mainTopNavBarLinks, routes } from './routes';
 import { MainLayout } from './layout';
 import { TopNavBar } from './components';
-import { CoinDetails, Discover } from './views';
+import { CoinDetails, Discover, Error404 } from './views';
 import { Suspense } from 'react';
 import { CoinIdType } from './global-types';
 
@@ -25,6 +25,11 @@ function App() {
                 </Suspense>
               );
             }}
+          </Route>
+          <Route>
+            <Suspense fallback={null}>
+              <Error404 />
+            </Suspense>
           </Route>
         </Switch>
       </main>

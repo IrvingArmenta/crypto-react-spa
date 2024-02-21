@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import IconsNavBar, { IconsNavBarLinkType } from './IconsNavBar';
 
@@ -6,6 +5,10 @@ const mockLinks: IconsNavBarLinkType[] = [
   { text: 'Home', href: '#', icon: 'home' },
   { text: 'Woop', href: '/woop', icon: 'megaphone' }
 ];
+
+jest.mock('wouter', () => ({
+  Link: jest.fn(({ children }) => <>{children}</>)
+}));
 
 describe('@components/IconsNavBar.tsx', () => {
   it('should render the component with the expected number of items', () => {

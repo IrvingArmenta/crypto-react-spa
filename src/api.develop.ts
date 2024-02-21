@@ -12,6 +12,9 @@ dotenv.config();
 const PORT = 3001;
 const API_KEY = process.env.GECKO_COIN_API;
 const GECKO_CUSTOM_HEADER = 'x-cg-demo-api-key' as const;
+const API_REQUEST_OPTIONS = {
+  headers: { [GECKO_CUSTOM_HEADER]: API_KEY }
+} as RequestInit;
 
 const app = express();
 app.use(morgan('tiny'));
@@ -27,11 +30,10 @@ if (!API_KEY) {
  */
 app.get('/api/simple-prices', async (_req: Request, res: Response) => {
   try {
-    const response = await fetch(config.GET_SIMPLE_PRICE_URI, {
-      headers: {
-        [GECKO_CUSTOM_HEADER]: API_KEY
-      }
-    });
+    const response = await fetch(
+      config.GET_SIMPLE_PRICE_URI,
+      API_REQUEST_OPTIONS
+    );
 
     const json = await response.json();
 
@@ -60,11 +62,7 @@ app.get('/api/ohlc/:coinId', async (req: Request, res: Response) => {
       coinId === 'btc'
         ? config.GET_OHLC_URI_BTCETH
         : config.GET_OHLC_URI_ETHBTC,
-      {
-        headers: {
-          [GECKO_CUSTOM_HEADER]: API_KEY
-        }
-      }
+      API_REQUEST_OPTIONS
     );
 
     const json = await response.json();
@@ -94,11 +92,7 @@ app.get('/api/companies/:coinId', async (req: Request, res: Response) => {
       coinId === 'btc'
         ? config.GET_COMPANY_URI_BTC
         : config.GET_COMPANY_URI_ETH,
-      {
-        headers: {
-          [GECKO_CUSTOM_HEADER]: API_KEY
-        }
-      }
+      API_REQUEST_OPTIONS
     );
 
     const json = await response.json();
