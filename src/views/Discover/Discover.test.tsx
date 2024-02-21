@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import Discover from './Discover';
 
@@ -9,6 +8,10 @@ jest.mock('@/components', () => ({
   CurrencyInfoGroup: jest.fn(() => <></>),
   CoinHeatPrices: jest.fn(() => <></>),
   LoadingSvg: jest.fn(() => <></>)
+}));
+
+jest.mock('wouter', () => ({
+  Link: jest.fn(({ children }) => <>{children}</>)
 }));
 
 describe('Discover.tsx', () => {

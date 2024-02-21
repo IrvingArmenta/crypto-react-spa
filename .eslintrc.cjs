@@ -13,16 +13,18 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
+    'plugin:jsx-a11y/recommended',
     'prettier'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', './styled-sytem'],
   parser: '@typescript-eslint/parser',
   plugins: [
     'react-refresh',
-    'prettier',
     'jest-dom',
     'testing-library',
-    'react'
+    'react',
+    'jsx-a11y',
+    'prettier'
   ],
   rules: {
     'react-refresh/only-export-components': [

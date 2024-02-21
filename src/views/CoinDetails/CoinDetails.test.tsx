@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import CoinDetails from './CoinDetails';
 import { GetOhlcUriFrontendReturnType } from '@/api/types';
@@ -7,6 +6,7 @@ import * as Hooks from '@/api/hooks';
 import { Redirect } from 'wouter';
 import { CoinIdType } from '@/global-types';
 import CompaniesTable from './CompaniesTable';
+import { candlesticksChartOptions } from './constants';
 
 jest.mock('react-apexcharts', () => jest.fn(() => <></>));
 
@@ -25,7 +25,8 @@ const mockChartData: GetOhlcUriFrontendReturnType = {
 const mockGetOHLCReturn: ReturnType<typeof Hooks.useGetOHLCData> = {
   data: mockChartData,
   isLoading: false,
-  isValidating: false
+  isValidating: false,
+  error: undefined
 };
 
 const useGetOHLCDataSpy = jest.spyOn(Hooks, 'useGetOHLCData');
@@ -35,7 +36,7 @@ jest.mock('@/components', () => ({
 }));
 
 jest.mock('wouter', () => ({
-  ...jest.requireActual('wouter'),
+  Link: jest.fn(({ children }) => <>{children}</>),
   Redirect: jest.fn(() => {
     Object.defineProperty(window, 'location', {
       get: jest.fn().mockReturnValue({ pathname: '/coin-details/btc' })
@@ -91,10 +92,17 @@ describe('CoinDetails.tsx', () => {
       expect(screen.getByText(expectedCoinSuffix)).toBeInTheDocument();
     }
   );
+
   it('should call CompaniesTable with the expected prop', () => {
     useGetOHLCDataSpy.mockReturnValueOnce({ ...mockGetOHLCReturn });
     render(<CoinDetails coinId="eth" />);
 
     expect(CompaniesTable).toHaveBeenCalledWith({ coinId: 'eth' }, {});
+  });
+
+  test('candlesticksChartOptions format functions should work as expected', () => {
+    const result = candlesticksChartOptions.yaxis.labels.formatter(10);
+
+    expect(result).toBe('10.0000');
   });
 });

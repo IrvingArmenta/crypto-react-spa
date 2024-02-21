@@ -11,8 +11,6 @@ import { fetchOHLC, fetchSimplePrices, fetchCompaniesHoldings } from './index';
 import { CoinIdType } from '@/global-types';
 import { config } from './config';
 
-fetchMock.enableMocks(); // Enable mocking globally;
-
 beforeEach(() => {
   fetchMock.resetMocks(); // Clear any previous mocks before each test
 });
@@ -20,7 +18,7 @@ beforeEach(() => {
 describe('api/fetch functions', () => {
   describe('fetchSimplePrices', () => {
     it('fetches data successfully', async () => {
-      fetchMock.mockResponseOnce(JSON.stringify(mockSimplePricesResponse));
+      fetchMock.mockResponse(JSON.stringify(mockSimplePricesResponse));
 
       const data = await fetchSimplePrices();
 
@@ -28,7 +26,7 @@ describe('api/fetch functions', () => {
     });
 
     it('should return error message if json response is falsy', async () => {
-      fetchMock.mockResponseOnce(JSON.stringify(''));
+      fetchMock.mockResponse(JSON.stringify(''));
 
       await expect(fetchSimplePrices()).rejects.toThrow(
         'Something went wrong with https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum&vs_currencies=eth%2Cbtc&include_market_cap=false&include_24hr_change=true&precision=4 request'
@@ -40,7 +38,7 @@ describe('api/fetch functions', () => {
     it.each(['btc', 'eth'])(
       'fetches data successfully for coinId: %s',
       async (coinId) => {
-        fetchMock.mockResponseOnce(JSON.stringify(mockOhlcData));
+        fetchMock.mockResponse(JSON.stringify(mockOhlcData));
 
         const data = await fetchOHLC(coinId as CoinIdType);
 
@@ -51,7 +49,8 @@ describe('api/fetch functions', () => {
     it.each(['btc', 'eth'])(
       'should return the expected error message for %s if json response is falsy',
       async (coinId) => {
-        fetchMock.mockResponseOnce(JSON.stringify(''));
+        fetchMock.mockResponse(JSON.stringify(''));
+
         const URI = {
           btc: config.GET_OHLC_URI_BTCETH,
           eth: config.GET_OHLC_URI_ETHBTC
@@ -68,7 +67,7 @@ describe('api/fetch functions', () => {
     it.each(['btc', 'eth'])(
       'fetches data successfully for coinId: %s',
       async (coinId) => {
-        fetchMock.mockResponseOnce(JSON.stringify(mockGetCompaniesResponse));
+        fetchMock.mockResponse(JSON.stringify(mockGetCompaniesResponse));
 
         const data = await fetchCompaniesHoldings(coinId as CoinIdType);
 
@@ -79,7 +78,8 @@ describe('api/fetch functions', () => {
     it.each(['btc', 'eth'])(
       'should return the expected error message for %s if json response is falsy',
       async (coinId) => {
-        fetchMock.mockResponseOnce(JSON.stringify(''));
+        fetchMock.mockResponse(JSON.stringify(''));
+
         const URI = {
           btc: config.GET_COMPANY_URI_BTC,
           eth: config.GET_COMPANY_URI_ETH

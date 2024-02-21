@@ -15,17 +15,14 @@ export default defineConfig({
   // Files to exclude
   exclude: [],
 
-  presets: ['@pandacss/preset-base'],
+  utilities: {
+    color: {
+      values: 'colors'
+    }
+  },
 
   // Useful for theme customization
   theme: {
-    breakpoints: {
-      sm: '380px',
-      md: '640px',
-      lg: '860px',
-      xl: '1280px',
-      '2xl': '1536px'
-    },
     tokens: {
       colors: {
         'gray.50': {
@@ -71,14 +68,27 @@ export default defineConfig({
       }
     },
     extend: {
+      breakpoints: {
+        sm: '380px',
+        md: '640px',
+        lg: '860px',
+        xl: '1280px',
+        '2xl': '1536px'
+      },
       tokens: {
         animations: {
           fadeIn: {
             value: 'fadeIn 0.5s ease-in-out forwards'
-          }
+          },
+          floating: { value: 'floating 3s ease-in-out forwards infinite' }
         }
       },
       keyframes: {
+        floating: {
+          '0%': { transform: 'translate(0,  0px)' },
+          '50%': { transform: 'translate(0, 15px)' },
+          '100%': { transform: 'translate(0, -0px)' }
+        },
         fadeIn: {
           '0%': {
             opacity: 0,
@@ -97,10 +107,10 @@ export default defineConfig({
     dark: '[data-theme=dark] &'
   },
 
+  presets: ['@pandacss/preset-base'],
   importMap: '@style',
   watch: true,
   hash: true,
-  eject: true,
 
   // The output directory for your css system
   outdir: 'styled-system'

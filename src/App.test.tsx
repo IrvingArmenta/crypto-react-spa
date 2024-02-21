@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 import { Route } from 'wouter';
@@ -6,7 +5,12 @@ import { ReactNode } from 'react';
 
 jest.mock('wouter', () => ({
   ...jest.requireActual('wouter'),
+  Link: jest.fn(({ children }) => <>{children}</>),
   Route: jest.fn(() => <></>)
+}));
+
+jest.mock('./components', () => ({
+  TopNavBar: jest.fn(() => <></>)
 }));
 
 jest.mock('react', () => {
@@ -23,6 +27,7 @@ describe('App.tsx', () => {
 
     expect(screen.getByTestId('main-layout')).toBeInTheDocument();
   });
+
   it('should render both available routes', async () => {
     render(<App />);
 
